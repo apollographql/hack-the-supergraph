@@ -1,46 +1,64 @@
-# Apollo Server JavaScript Subgraph Template
+# Hack the Supergrpah
 
-This template can be used to quickly create an [Apollo Federation] subgraph with the [@apollo/subgraph] and [@apollo/server] packages.
+You're lost in space.... (copy from gdoc)
 
-## What's Included
+## Start
 
-- A basic, [Apollo Federation] subgraph with simple examples for queries, entities, and mutations. You can run this subgraph with `npm start`.
-- [nodemon] is 
-- Example tests in the `src/__tests__` directory. You can run these tests with `npm run test`.
-- GitHub Actions workflows which will:
-  - Run `npm run test` on every push.
-  - Check the schema against Apollo Studio on every push.
-  - Publish the subgraph to Apollo Studio on every push to the `main` branch.
+You find a monolith, it's been used a lot and for a good reason. It has all of the locations for us to visit in the galaxy!
 
-## Setup Wizard
+1. Create your Supergraph account at studio.apollographql.com
+2. Clone the Hackathon repo
+3. Add the monolith to create your Supergraph
+   - Use https://hack-the-supergraph-start-production.up.railway.app/ for the Subgraph URL
+   - Introspection doesn't work on the monolith, you'll have to find the schema and define Entities
+4. Upgrade the monolith:
 
-There is a `.template` folder included in this template that provides a "wizard" like setup experience. It currently does the following:
+**LEVEL I**
 
-- Runs `npm install` to install packages
-- Asks if you would like to mock the schema using [graphql-tools]
-  - if yes...
-    - Copy `.template/mock.js` to `src/index.js`
-    - Run `npm i @graphql-tools/mock`
-  - finally...
-    - Delete `.template` folder
+Starting with this schema
 
-## Next Steps
+```graphql
+type Location  {
+  id: ID!
+  name: String
+  celestialBody: CelestialBody!
+}
 
-- Setup project with `npm install` or run `node .template/setup.js` for a wizard experience
-  - You can delete the `.template` folder if you don't want to use it (the wizard also deletes the folder after running)
-- Download [Rover] and start it using the command printed out from `cargo run` to start a local version of Apollo Explorer.
-- Replace "name" in `package.json` with the name of your subgraph.
-- Start filling in your own schema in `schema.graphql`.
-- Start filling in your own types and resolvers in `src/resolvers`.
-- Set these secrets in GitHub Actions to enable all checks:
-  - `APOLLO_KEY`: An Apollo Studio API key for the supergraph to enable schema checks and publishing of the subgraph.
-  - `APOLLO_GRAPH_REF`: The name of the supergraph in Apollo Studio.
-  - `PRODUCTION_URL`: The URL of the deployed subgraph that the supergraph gateway will route to.
-- Write your custom deploy logic in `.github/workflows/deploy.yaml`.
+type CelestialBody {
+  galaxy: String
+  latitude: Float
+  longitude: Float
+}
 
-[apollo federation]: https://www.apollographql.com/docs/federation/
-[apollo server]: https://www.apollographql.com/docs/apollo-server/
-[@apollo/subgraph]: https://www.apollographql.com/docs/federation/subgraphs
-[rover]: https://www.apollographql.com/docs/rover/
-[nodemon]: https://www.npmjs.com/package/nodemon
-[graphql-tools]: https://www.graphql-tools.com/docs/mocking
+type Query {
+  destinations: [Location]
+}
+
+```
+ 1. Add federation directives and discuss them
+
+```graphql
+extend schema
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.0"
+    import: ["@key", "@shareable"]
+  )
+```
+
+  2. Make `Location` an Entity with `@key`
+  3. Make `CelestialBody` a shared type with `@shareable`
+
+5. Upload the updated schema 
+
+**LEVEL II**
+
+You will ugrade the monolith server to support Apollo Federation 2
+
+1. Navigate to the "start" folder wherever you cloned the hackathon materials
+2. Setup the project - `npm install`
+3. Install Apollo Federation specific library - `npm i @apollo/subgraph`
+4. Build the schema in `index.js` with `buildSubgraphSchema`
+5. Make upgrades to schema (same as Level I)
+6. Add `__resolveReference` for `Location` resolver
+7. Run locally and query through `rover dev`
+8. Upload the updated schema to supergraph

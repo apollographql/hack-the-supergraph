@@ -1,18 +1,18 @@
 const fetch = require("node-fetch");
+const baseUrl =
+  "https://hack-the-supergraph-legacy-api-production.up.railway.app";
 
 class BeachData {
   async getBeaches() {
-    const response = await fetch("http://localhost:5000/beaches");
+    const response = await fetch(`${baseUrl}/beaches`);
     return await response.json();
   }
   async getBeach(name) {
-    const response = await fetch(`http://localhost:5000/beaches/${name}`);
+    const response = await fetch(`${baseUrl}/beaches/${name}`);
     return await response.json();
   }
   async getBeachActivities(name) {
-    const response = await fetch(
-      `http://localhost:5000/beaches/${name}/activities`
-    );
+    const response = await fetch(`${baseUrl}/beaches/${name}/activities`);
     return await response.json();
   }
 }

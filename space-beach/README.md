@@ -1,46 +1,78 @@
-# Apollo Server JavaScript Subgraph Template
+# Space Beach - Hack the Supergraph
 
-This template can be used to quickly create an [Apollo Federation] subgraph with the [@apollo/subgraph] and [@apollo/server] packages.
+Welcome to the beach! 
 
-## What's Included
+We have all the time in the galaxy, but we want to start planning beach activities. 
 
-- A basic, [Apollo Federation] subgraph with simple examples for queries, entities, and mutations. You can run this subgraph with `npm start`.
-- [nodemon] is 
-- Example tests in the `src/__tests__` directory. You can run these tests with `npm run test`.
-- GitHub Actions workflows which will:
-  - Run `npm run test` on every push.
-  - Check the schema against Apollo Studio on every push.
-  - Publish the subgraph to Apollo Studio on every push to the `main` branch.
+Don't need the location while we're planning the activities, let's `@defer` that
 
-## Setup Wizard
+## LEVEL I
 
-There is a `.template` folder included in this template that provides a "wizard" like setup experience. It currently does the following:
+1. Give `@defer` discussion story, monoliths entities can be defered through cloud router
+2. Add `beaches` subgraph to your Supergraph
 
-- Runs `npm install` to install packages
-- Asks if you would like to mock the schema using [graphql-tools]
-  - if yes...
-    - Copy `.template/mock.js` to `src/index.js`
-    - Run `npm i @graphql-tools/mock`
-  - finally...
-    - Delete `.template` folder
+*Subgraph URL: https://space-beach-production.up.railway.app/*
 
-## Next Steps
+3. Open Explorer and run the following query to see `@defer` run live:
 
-- Setup project with `npm install` or run `node .template/setup.js` for a wizard experience
-  - You can delete the `.template` folder if you don't want to use it (the wizard also deletes the folder after running)
-- Download [Rover] and start it using the command printed out from `cargo run` to start a local version of Apollo Explorer.
-- Replace "name" in `package.json` with the name of your subgraph.
-- Start filling in your own schema in `schema.graphql`.
-- Start filling in your own types and resolvers in `src/resolvers`.
-- Set these secrets in GitHub Actions to enable all checks:
-  - `APOLLO_KEY`: An Apollo Studio API key for the supergraph to enable schema checks and publishing of the subgraph.
-  - `APOLLO_GRAPH_REF`: The name of the supergraph in Apollo Studio.
-  - `PRODUCTION_URL`: The URL of the deployed subgraph that the supergraph gateway will route to.
-- Write your custom deploy logic in `.github/workflows/deploy.yaml`.
+```graphql
+query Beaches {
+  beaches {
+    name
+    activities {
+      riskLevel
+      description
+      place
+    }
+    location {
+      ...LocationFragment @defer
+    }
+  }
+}
 
-[apollo federation]: https://www.apollographql.com/docs/federation/
-[apollo server]: https://www.apollographql.com/docs/apollo-server/
-[@apollo/subgraph]: https://www.apollographql.com/docs/federation/subgraphs
-[rover]: https://www.apollographql.com/docs/rover/
-[nodemon]: https://www.npmjs.com/package/nodemon
-[graphql-tools]: https://www.graphql-tools.com/docs/mocking
+fragment LocationFragment on Location {
+  name
+  celestialBody {
+    galaxy
+    latitude
+    longitude
+  }
+}
+```
+
+## LEVEL II
+
+1. Give `@defer` discussion story, monoliths entities can be defered through cloud router
+2. Navigate to the "space-beach" folder wherever you cloned the hackathon materials
+3. `rover template use` - Start a new project
+4. Setup project - `npm install`
+5. Copy schema into the new project along with `beaches.js`
+6. Create resolvers that use `beaches.js`
+7. Run locally and query through sandbox using `rover dev`
+
+```graphql
+query Beaches {
+  beaches {
+    name
+    activities {
+      riskLevel
+      description
+      place
+    }
+    location {
+      ...LocationFragment @defer
+    }
+  }
+}
+
+fragment LocationFragment on Location {
+  name
+  celestialBody {
+    galaxy
+    latitude
+    longitude
+  }
+}
+```
+
+8. Upload the updated schema to supergraph, run query in explorer

@@ -1,46 +1,74 @@
-# Apollo Server JavaScript Subgraph Template
+# Solar Seas - Hack the Supergraph
 
-This template can be used to quickly create an [Apollo Federation] subgraph with the [@apollo/subgraph] and [@apollo/server] packages.
+The solar seas are beaiful and vast. As you're traveling, you find the monolith is getting slow when reading the `CelestialBody` coordinates. It makes traveling to new locations difficult when you're far away in the solar seas.
 
-## What's Included
+You find a ______something______ and now you have a map of all the galaxies locations. The monolith still provides some information, but this will help speed up getting those locations. We just need to `@override` the monoliths information for `CelestialBody`
 
-- A basic, [Apollo Federation] subgraph with simple examples for queries, entities, and mutations. You can run this subgraph with `npm start`.
-- [nodemon] is 
-- Example tests in the `src/__tests__` directory. You can run these tests with `npm run test`.
-- GitHub Actions workflows which will:
-  - Run `npm run test` on every push.
-  - Check the schema against Apollo Studio on every push.
-  - Publish the subgraph to Apollo Studio on every push to the `main` branch.
+1. Open up Explorer for your Supergraph and run this query:
 
-## Setup Wizard
+```graphql
+query AllDestinations {
+  destinations {
+    celestialBody {
+      galaxy
+    }
+  }
+}
+```
 
-There is a `.template` folder included in this template that provides a "wizard" like setup experience. It currently does the following:
+*Note: Notice that it takes longer than 1s to respond*
 
-- Runs `npm install` to install packages
-- Asks if you would like to mock the schema using [graphql-tools]
-  - if yes...
-    - Copy `.template/mock.js` to `src/index.js`
-    - Run `npm i @graphql-tools/mock`
-  - finally...
-    - Delete `.template` folder
+## LEVEL I
 
-## Next Steps
+1. Start with the basic schema, what we want to do is override the `celestialBody` of `Location` since we have a faster datasource
 
-- Setup project with `npm install` or run `node .template/setup.js` for a wizard experience
-  - You can delete the `.template` folder if you don't want to use it (the wizard also deletes the folder after running)
-- Download [Rover] and start it using the command printed out from `cargo run` to start a local version of Apollo Explorer.
-- Replace "name" in `package.json` with the name of your subgraph.
-- Start filling in your own schema in `schema.graphql`.
-- Start filling in your own types and resolvers in `src/resolvers`.
-- Set these secrets in GitHub Actions to enable all checks:
-  - `APOLLO_KEY`: An Apollo Studio API key for the supergraph to enable schema checks and publishing of the subgraph.
-  - `APOLLO_GRAPH_REF`: The name of the supergraph in Apollo Studio.
-  - `PRODUCTION_URL`: The URL of the deployed subgraph that the supergraph gateway will route to.
-- Write your custom deploy logic in `.github/workflows/deploy.yaml`.
+```graphql
+type Location @key(fields: "id") {
+  id: ID!
+  # This is what we want to override
+  celestialBody: CelestialBody! 
 
-[apollo federation]: https://www.apollographql.com/docs/federation/
-[apollo server]: https://www.apollographql.com/docs/apollo-server/
-[@apollo/subgraph]: https://www.apollographql.com/docs/federation/subgraphs
-[rover]: https://www.apollographql.com/docs/rover/
-[nodemon]: https://www.npmjs.com/package/nodemon
-[graphql-tools]: https://www.graphql-tools.com/docs/mocking
+```
+
+2. We need to define that schema
+
+```graphql
+extend schema
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.0"
+    import: ["@key", "@shareable", "@override"]
+  )
+
+type Location @key(fields: "id") {
+  id: ID!
+  celestialBody: CelestialBody! @override(from: "start")
+}
+
+type CelestialBody @shareable {
+  galaxy: String
+  latitude: Float!
+  longitude: Float!∂
+}
+```
+
+3. Add `solar-seas` to your Supergraph
+
+*Subgraph URL: https://solar-seas-production.up.railway.app/*
+
+4. Re-run the same query in explorer and see the query execute faster
+
+## LEVEL 2
+
+1. Give the "slow field from old datasource" story
+2. Navigate to the "solar-seas" folder wherever you cloned the hackathon materials
+3. `rover template use` - Start a new project
+4. Setup project - `npm install`
+5. Copy schema into the new project along with `celestialMap.js`
+6. Introduce `@overrides` into schema
+7. Write resolvers that use `celestialMap.js` data
+8. Run locally and query through sandbox using `rover dev` - see the query execute faster
+9. Add `solar-seas` to your Supergraph
+
+*Subgraph URL: https://solar-seas-production.up.railway.app/*
+
+10. Re-run the same query in explorer and see the query execute faster
