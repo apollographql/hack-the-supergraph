@@ -83,7 +83,7 @@ Let's rewrite the slow field in Rust—we can get started quickly with `rover te
 
 ### Adding the data source
 
-Copy the `celestialMap.json` and `celestial_body.rs` files in this folder into the `src` folder in the new directory—this is going to be our data source. You will need to expose the information in `celestialMap.json` on the context to be used in your resolvers. Open the `src/lib.rs` add the `celestial_body` module then import the `CelestialBody` type:
+Copy the `celestialMap.json` and `celestial_body.rs` files in this folder into the `src` folder in the new directory—this is going to be our data source. You will need to expose the information in `celestialMap.json` on the context to be used in your resolvers. Open `src/lib.rs` add the `celestial_body` module then import the `CelestialBody` type:
 
 ```rust
 mod celestial_body;
@@ -164,6 +164,8 @@ impl Query {
     }
 }
 ```
+
+> The `Context` type should be added to the `use async_graphql::{}` block at the top of the file.
 
 ### Cleanup
 
