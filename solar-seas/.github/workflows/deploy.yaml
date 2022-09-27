@@ -1,0 +1,36 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        run: echo "::warning file=.github/workflows/deploy.yaml,line=10,endLine=14,title=No Deploy step defined::Define your custom workflow for deploying your subgraph here."
+
+  prepare_schema:
+    if: false
+    uses: ./.github/workflows/apollo.yaml
+
+  publish_schema:
+    name: Publish new schema to Apollo Studio
+    needs: [ deploy, prepare_schema ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ needs.prepare_schema.outputs.schema_artifact }}
+      - name: Install Rover
+        run: |
+          curl -sSL https://rover.apollo.dev/nix/latest | sh
+          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - name: Publish Schema
+        run: rover subgraph publish ${{ secrets.APOLLO_GRAPH_REF }} --schema ${{ needs.prepare_schema.outputs.schema }} --name ${{ needs.prepare_schema.outputs.subgraph_name }} --routing-url ${{ secrets.PRODUCTION_URL }}
+        env:
+          APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+          APOLLO_VCS_COMMIT: ${{ github.event.pull_request.head.sha }}

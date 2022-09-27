@@ -1,0 +1,32 @@
+name: Tests and Checks
+on: push
+
+jobs:
+  prepare_schema:
+    if: false
+    uses: ./.github/workflows/apollo.yaml
+
+  check_schema:
+    name: Check Schema with Apollo Studio
+    needs: [ prepare_schema ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ needs.prepare_schema.outputs.schema_artifact }}
+      - name: Install Rover
+        run: |
+          curl -sSL https://rover.apollo.dev/nix/latest | sh
+          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - run: rover subgraph check ${{ secrets.APOLLO_GRAPH_REF }} --schema ${{ needs.prepare_schema.outputs.schema }} --name ${{ needs.prepare_schema.outputs.subgraph_name }}
+        env:
+          APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+          APOLLO_VCS_COMMIT: ${{ github.event.pull_request.head.sha }}
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: Swatinem/rust-cache@v2
+      - name: Test
+        run: cargo test
