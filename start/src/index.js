@@ -3,7 +3,6 @@ const { readFileSync } = require("fs");
 const gql = require("graphql-tag");
 const { ApolloServer } = require("@apollo/server");
 const { startStandaloneServer } = require("@apollo/server/standalone");
-const { buildSubgraphSchema } = require("@apollo/subgraph");
 
 const resolvers = require("./resolvers");
 const { LocationsData } = require("./data/locations");
@@ -17,7 +16,8 @@ async function main() {
   );
 
   const server = new ApolloServer({
-    schema: buildSubgraphSchema({ typeDefs, resolvers }),
+    typeDefs,
+    resolvers,
   });
   const { url } = await startStandaloneServer(server, {
     context: async ({ req }) => ({

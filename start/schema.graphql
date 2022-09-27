@@ -1,16 +1,10 @@
-extend schema
-  @link(
-    url: "https://specs.apollo.dev/federation/v2.0"
-    import: ["@key", "@shareable"]
-  )
-
-type Location @key(fields: "id") {
+type Location {
   id: ID!
   name: String
   celestialBody: CelestialBody!
 }
 
-type CelestialBody @shareable {
+type CelestialBody {
   galaxy: String
   latitude: Float
   longitude: Float
