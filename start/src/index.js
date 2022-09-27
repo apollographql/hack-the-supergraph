@@ -4,7 +4,6 @@ const gql = require("graphql-tag");
 const { ApolloServer } = require("@apollo/server");
 const { startStandaloneServer } = require("@apollo/server/standalone");
 const { buildSubgraphSchema } = require("@apollo/subgraph");
-const { addMocksToSchema } = require("@graphql-tools/mock");
 
 const resolvers = require("./resolvers");
 const { LocationsData } = require("./data/locations");
@@ -16,10 +15,9 @@ async function main() {
       encoding: "utf-8",
     })
   );
-  const schema = buildSubgraphSchema({ typeDefs, resolvers });
 
   const server = new ApolloServer({
-    schema: addMocksToSchema({ schema, preserveResolvers: true }),
+    schema: buildSubgraphSchema({ typeDefs, resolvers }),
   });
   const { url } = await startStandaloneServer(server, {
     context: async ({ req }) => ({

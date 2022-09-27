@@ -8,7 +8,7 @@ type Query {
 type Beach {
   name: String
   activities: [Activity]
-  location: Location #@defer in query
+  location: Location
 }
 
 type Activity {

@@ -1,19 +1,37 @@
 # Space Beach - Hack the Supergraph
 
-Welcome to the beach! 
+Welcome to the beach! Beaches in space are a little different than beaches we think of on Earth. It's always fun playing games at the beach, but in space, we need to know how risky some of the activities are. 
 
-We have all the time in the galaxy, but we want to start planning beach activities. 
+We have all the time in the cosmos, but we want to start planning activities and where we should go based on what we can do. The beach activity information is needed right away, but the location coordinates can be deferred. 
 
-Don't need the location while we're planning the activities, let's `@defer` that
+Since we created `Location` as an entity at the start of our journey, we can use `@defer` to ensure our graph router returns the activity information as soon as it has it. 
 
-## LEVEL I
+Let's `@defer` the location information:
 
-1. Give `@defer` discussion story, monoliths entities can be defered through cloud router
-2. Add `beaches` subgraph to your Supergraph
+## I don't want to write code...
 
-*Subgraph URL: https://space-beach-production.up.railway.app/*
+You find a signal coming from https://space-beach-production.up.railway.app/ that contians the beach information to add into your Supergraph. There is nothing special about the beach subgraph and it actually doesn't support `@defer` itself, but the Supergraph does!
 
-3. Open Explorer and run the following query to see `@defer` run live:
+We can add this into our Supergraph by publishing it using [rover]. 
+
+First, you'll need to [Configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
+
+```shell
+rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
+  --schema "./schema.graphql" \
+  --name space-beach \
+  --routing-url "https://space-beach-production.up.railway.app/"
+```
+
+*NOTE: make sure to repalce {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon*
+
+(image of successful publish from terminal)
+
+We can see our Supergraph deployment in the "Launches" tab:
+
+(image of successful launch)
+
+Now let's open up Explorer and try deferring the location data:
 
 ```graphql
 query Beaches {
@@ -40,15 +58,86 @@ fragment LocationFragment on Location {
 }
 ```
 
-## LEVEL II
+(gif of everything working)
 
-1. Give `@defer` discussion story, monoliths entities can be defered through cloud router
-2. Navigate to the "space-beach" folder wherever you cloned the hackathon materials
-3. `rover template use` - Start a new project
-4. Setup project - `npm install`
-5. Copy schema into the new project along with `beaches.js`
-6. Create resolvers that use `beaches.js`
-7. Run locally and query through sandbox using `rover dev`
+The Apollo Router supports `@defer` and it can work for any entity defined in your Supergraph, even if your subgraph doesn't support `@defer`. There isn't any extra code or steps, it just works.
+
+Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *solar-seas* next.
+
+## I want to write code...
+
+You find an old disc on the beach that ends up containing information about beaches and the activities at them. There are `schema.graphql` and `beaches.js` files in this folder that contain the information we'll need to setup this subgraph.
+
+To start a new subgraph, we'll use `rover template use` to create a project from a template:
+
+(gif/image of terminal)
+
+After `rover template use` is complete, setup the project:
+
+```shell
+npm install
+```
+
+Now replace the `schema.graphql` file in the newly created project and move the `beaches.js` to the `src` folder. You will need to expose the information in `beaches.js` on the context to be used in your resolvers. Open the `src/index.js` and add the beaches in the context function:
+
+```javascript
+const { BeachData } = require("./beaches");
+...
+const { url } = await startStandaloneServer(server, {
+  context: async ({ req }) => ({
+    beaches: new BeachData(),
+  }),
+  listen: { port },
+});
+```
+
+Finally, you need to wire up the resolvers for your schema. There is a root `Query`, so open and modify `src/resolvers/Query.js` to use the `beaches` datasource:
+
+```javascript
+module.exports = {
+  Query: {
+    beaches(parent, args, context) {
+      return context.beaches.getBeaches();
+    },
+  },
+};
+```
+
+Create a `src/resolvers/Beach.js` for the activities and location:
+
+```javascript
+module.exports = {
+  Beach: {
+    activities(beach, args, context) {
+      return context.beaches.getBeachActivities(beach.name);
+    },
+    location(beach, args, context) {
+      return { id: beach.location };
+    },
+  },
+};
+```
+
+*NOTE: Notice that we only need to return the `id` for the `location`. This is because `id` is the defined key fields for the `Location`*
+
+Make sure your `src/resolvers/index.js` is updated to import your newly created `Beach` resolver.
+
+*Note: You can delete any Mutation or other resolvers from the project, they aren't needed. *
+
+Now we can start up our subgraph and add it to our Supergraph stack locally with rover:
+
+```shell
+npm start
+```
+
+***If you still have your previous `rover dev` session running***: run `rover dev` in a new terminal window to add `space-beach` to your local Supergraph stack.
+
+***If you don't have your previous `rover dev` session running***: 
+
+- Run `rover dev --url=https://hack-the-supergraph-start-production.up.railway.app/ --name=start` 
+- In another terminal window, run `rover dev` and add `space-beach` running locally
+
+Now let's head over to our sandbox (*http://localhost:3000*) and tryout a query with `@defer`:
 
 ```graphql
 query Beaches {
@@ -75,4 +164,31 @@ fragment LocationFragment on Location {
 }
 ```
 
-8. Upload the updated schema to supergraph, run query in explorer
+(gif of everything working)
+
+The Apollo Router supports `@defer` and it can work for any entity defined in your Supergraph, even if your subgraph doesn't support `@defer`. There isn't any extra code or steps, it just works.
+
+Finally, we can add `space-beach` to our Supergraph by publishing it to our Supergraph using [rover]. 
+
+First, you'll need to [Configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
+
+```shell
+rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
+  --schema "./schema.graphql" \
+  --name space-beach \
+  --routing-url "https://space-beach-production.up.railway.app/"
+```
+
+*NOTE: make sure to repalce {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon*
+
+(image of successful publish from terminal)
+
+We can see our Supergraph deployment in the "Launches" tab:
+
+(image of successful launch)
+
+Now try opening Explorer and running the same query you ran in your local sandbox. Since `@defer` is supported in the Apollo Router, it works the same whether it's local or in the cloud :magic:
+
+Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *solar-seas* next.
+
+[Configure rover]: https://www.apollographql.com/docs/rover/configuring
