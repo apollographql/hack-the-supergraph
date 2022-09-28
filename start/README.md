@@ -28,7 +28,8 @@ type Query {
 }
 ```
 
-### I don't want to write code...
+<details>
+ <summary><h2>I don't want to write code...</h2></summary>
 
 First, we'll need to import the appropriate [Apollo Federation directives]. We will need the `@key` and `@shareable` directives:
 
@@ -124,7 +125,12 @@ query AllLocations {
 
 ![](../images/start-explorer-query.png)
 
-### I want to write code...
+</details>
+
+---
+
+<details>
+ <summary><h2>I want to write code...</h2></summary>
 
 In this folder lives the code for the box (you can think of this as our existing monolith). We'll need to make a couple changes to support Apollo Federation 2:
 
@@ -288,7 +294,9 @@ query AllLocations {
 ```
 
 ![](../images/start-explorer-query.png)
+</details>
 
+---
 
 Congratulations, you've completed the starting point of the hackathon! Head to any of the subgraph stations (*cosmic-cove*, *solar-seas* or *space-beach*) next.
 
