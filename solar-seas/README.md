@@ -16,7 +16,7 @@ query AllDestinations {
 }
 ```
 
-*Note: Notice that it takes longer than 1s to respond*
+>*NOTE: Notice that it takes longer than 1s to respond*
 
 ## I don't want to write code...
 
@@ -67,7 +67,7 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
 
 We can see our Supergraph deployment in the "Launches" tab:
 
-(image of successful launch)
+(image of successful launch - found bug in staging that is blocking this)
 
 Now let's open up Explorer and try runing the same query in explorer to see the query execute faster. Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *space-beach* next.
 
@@ -77,7 +77,7 @@ You'll use the `schema.graphql` and `celestialMap.json` files in this folder to 
 
 To start a new subgraph, we'll use `rover template use` to create a project from a template:
 
-(gif/image of terminal)
+![](../images/rover-template-new.png)
 
 After `rover template use` is complete, setup the project:
 
@@ -113,7 +113,7 @@ module.exports = {
 
 Make sure your `src/resolvers/index.js` is updated to import your newly created `Beach` resolver.
 
-*Note: You can delete any Mutation or other resolvers from the project, they aren't needed. *
+>*NOTE: You can delete any Mutation or other resolvers from the project, they aren't needed.*
 
 Now we can start up our subgraph and add it to our Supergraph stack locally with rover:
 
@@ -130,7 +130,7 @@ npm start
 
 Now let's head over to our sandbox (*http://localhost:3000*) and try the same query. It should execute faster and you can view the query plan showing the starting subgraph isn't used in the query plan, the new `solar-seas` subgraph is:
 
-(img of query plan in sandbox)
+![](../images/sandbox-query-plan.png)
 
 We can add `solar-seas` into our Supergraph by publishing it using [rover]. 
 
@@ -145,6 +145,6 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
 
 We can see our Supergraph deployment in the "Launches" tab:
 
-(image of successful launch)
+(image of successful launch - blocked by bug in staging)
 
 Now let's open up Explorer and try runing the same query in explorer to see the query execute faster. Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *space-beach* next.

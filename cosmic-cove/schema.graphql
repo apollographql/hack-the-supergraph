@@ -1,29 +1,18 @@
 extend schema
   @link(
     url: "https://specs.apollo.dev/federation/v2.0"
-    import: ["@key", "@shareable", "@external", "@requires"]
+    import: ["@key", "@shareable"]
   )
-
-type Cove @key(fields: "id") {
-  id: ID!
-  location: Location
-  """
-  SVG path to visualize the cavern
-  """
-  cavernMap: [Float]
-    @requires(fields: "location { celestialBody { latitude longitude } }")
-}
 
 type Query {
   coves: [Cove]
 }
 
-type Location @key(fields: "id") {
+type Cove @key(fields: "id") {
   id: ID!
-  celestialBody: CelestialBody! @external
+  location: Location
 }
 
-type CelestialBody @shareable {
-  latitude: Float!
-  longitude: Float!
+type Location @key(fields: "id") {
+  id: ID!
 }

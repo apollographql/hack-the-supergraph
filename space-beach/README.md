@@ -23,13 +23,11 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
   --routing-url "https://space-beach-production.up.railway.app/"
 ```
 
-*NOTE: make sure to repalce {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon*
-
-(image of successful publish from terminal)
+>*NOTE: make sure to repalce {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon*
 
 We can see our Supergraph deployment in the "Launches" tab:
 
-(image of successful launch)
+![](../images/space-beach-launch.png)
 
 Now let's open up Explorer and try deferring the location data:
 
@@ -70,7 +68,7 @@ You find an old disc on the beach that ends up containing information about beac
 
 To start a new subgraph, we'll use `rover template use` to create a project from a template:
 
-(gif/image of terminal)
+![](../images/rover-template-new.png)
 
 After `rover template use` is complete, setup the project:
 
@@ -118,11 +116,9 @@ module.exports = {
 };
 ```
 
-*NOTE: Notice that we only need to return the `id` for the `location`. This is because `id` is the defined key fields for the `Location`*
+>*NOTE: Notice that we only need to return the `id` for the `location`. This is because `id` is the defined key fields for the `Location`*
 
-Make sure your `src/resolvers/index.js` is updated to import your newly created `Beach` resolver.
-
-*Note: You can delete any Mutation or other resolvers from the project, they aren't needed. *
+Make sure your `src/resolvers/index.js` is updated to import your newly created `Beach` resolver. You can delete any Mutation or other resolvers from the project, they aren't needed.
 
 Now we can start up our subgraph and add it to our Supergraph stack locally with rover:
 
@@ -164,7 +160,7 @@ fragment LocationFragment on Location {
 }
 ```
 
-(gif of everything working)
+![](../images/sandbox-defer.gif)
 
 The Apollo Router supports `@defer` and it can work for any entity defined in your Supergraph, even if your subgraph doesn't support `@defer`. There isn't any extra code or steps, it just works.
 
@@ -179,13 +175,13 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
   --routing-url "https://space-beach-production.up.railway.app/"
 ```
 
-*NOTE: make sure to repalce {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon*
+>*NOTE: make sure to repalce {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon*
 
-(image of successful publish from terminal)
+![](../images/space-beach-subgraph-publish.png)
 
 We can see our Supergraph deployment in the "Launches" tab:
 
-(image of successful launch)
+![](../images/space-beach-launch.png)
 
 Now try opening Explorer and running the same query you ran in your local sandbox. Since `@defer` is supported in the Apollo Router, it works the same whether it's local or in the cloud :magic:
 
