@@ -276,7 +276,7 @@ Congrats, you just started your Supergraph! Now navigate to explorer and query a
 
 ```graphql
 query AllLocations {
-	destinations {
+  destinations {
     name
     celestialBody {
       galaxy
