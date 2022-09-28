@@ -51,9 +51,15 @@ type Location @key(fields:"id") {
 }
 ```
 
-`CelestialBody` contains the coordinates of a specific location and we'll need to use that type in other places in our Supergraph. For shared types, we can denote this with the `@shareable` directive on the `CelestialBody` type:
+`CelestialBody` contains the coordinates of a specific location and we'll need to use that type in other places in our Supergraph. For shared types, we can denote this with the `@shareable` directive on the `CelestialBody` type. We'll also add `@shareable` to `Location.celestialBody`:
 
 ```graphql
+type Location @key(fields:"id") {
+  id: ID!
+  name: String
+  celestialBody: CelestialBody! @shareable
+}
+
 type CelestialBody @shareable {
   galaxy: String
   latitude: Float
@@ -75,7 +81,7 @@ extend schema
 type Location @key(fields: "id") {
   id: ID!
   name: String
-  celestialBody: CelestialBody!
+  celestialBody: CelestialBody! @shareable
 }
 
 type CelestialBody @shareable {
@@ -158,9 +164,15 @@ type Location @key(fields:"id") {
 }
 ```
 
-`CelestialBody` contains the coordinates of a specific location and we'll need to use that type in other places in our Supergraph. For shared types, we can denote this with the `@shareable` directive on the `CelestialBody` type:
+`CelestialBody` contains the coordinates of a specific location and we'll need to use that type in other places in our Supergraph. For shared types, we can denote this with the `@shareable` directive on the `CelestialBody` type. We'll also add `@shareable` to `Location.celestialBody`:
 
 ```graphql
+type Location @key(fields:"id") {
+  id: ID!
+  name: String
+  celestialBody: CelestialBody! @shareable
+}
+
 type CelestialBody @shareable {
   galaxy: String
   latitude: Float
@@ -182,7 +194,7 @@ extend schema
 type Location @key(fields: "id") {
   id: ID!
   name: String
-  celestialBody: CelestialBody!
+  celestialBody: CelestialBody! @shareable
 }
 
 type CelestialBody @shareable {

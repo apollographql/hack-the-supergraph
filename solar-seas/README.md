@@ -27,7 +27,7 @@ Remember our schema from the `Location` we defined at the start:
 ```graphql
 type Location @key(fields: "id") {
   id: ID!
-  celestialBody: CelestialBody! # This is what we want to override
+  celestialBody: CelestialBody! @shareable # This is what we want to override
 }
 ```
 
@@ -48,7 +48,7 @@ Finally, we need to add the `@override` directive to `celestialBody` and declare
 ```graphql
 type Location @key(fields: "id") {
   id: ID!
-  celestialBody: CelestialBody! @override(from: "start")
+  celestialBody: CelestialBody! @shareable @override(from: "start") 
 }
 ```
 
