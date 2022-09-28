@@ -1,0 +1,18 @@
+extend schema
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.0"
+    import: ["@key", "@shareable", "@override"]
+  )
+
+type Location @key(fields: "id") {
+  id: ID!
+
+  # From start, this will be super slow
+  celestialBody: CelestialBody! @override(from: "start") @shareable
+}
+
+type CelestialBody @shareable {
+  galaxy: String
+  latitude: Float!
+  longitude: Float!
+}
