@@ -1,18 +1,18 @@
 # Space Beach - Hack the Supergraph
 
-Welcome to the beach! Beaches in space are a little different than beaches we think of on Earth. It's always fun playing games at the beach, but in space, we need to know how risky some of the activities are. 
+Welcome to the beach! Beaches in space are a little different than beaches we think of on Earth. It's always fun playing games at the beach, but in space, we need to know how risky some of the activities are.
 
-We have all the time in the cosmos, but we want to start planning activities and where we should go based on what we can do. The beach activity information is needed right away, but the location coordinates can be deferred. 
+We have all the time in the cosmos, but we want to start planning activities and where we should go based on what we can do. The beach activity information is needed right away, but the location coordinates can be deferred.
 
-Since we created `Location` as an entity at the start of our journey, we can use `@defer` to ensure our graph router returns the activity information as soon as it has it. 
+Since we created `Location` as an entity at the start of our journey, we can use `@defer` to ensure our graph router returns the activity information as soon as it has it.
 
 Let's `@defer` the location information:
 
 ## I don't want to write code...
 
-You find a signal coming from https://space-beach-production.up.railway.app/ that contians the beach information to add into your Supergraph. There is nothing special about the beach subgraph and it actually doesn't support `@defer` itself, but the Supergraph does!
+You find a signal coming from [https://space-beach-production.up.railway.app/](https://space-beach-production.up.railway.app/) that contains the beach information to add into your Supergraph. There is nothing special about the beach subgraph and it actually doesn't support `@defer` itself, but the Supergraph does!
 
-We can add this into our Supergraph by publishing it using [rover]. 
+We can add this into our Supergraph by publishing it using [rover].
 
 First, you'll need to [Configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
 
@@ -23,7 +23,7 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
   --routing-url "https://space-beach-production.up.railway.app/"
 ```
 
->*NOTE: make sure to repalce {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon*
+>*NOTE: make sure to replace {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon*
 
 We can see our Supergraph deployment in the "Launches" tab:
 
@@ -128,12 +128,12 @@ npm start
 
 ***If you still have your previous `rover dev` session running***: run `rover dev` in a new terminal window to add `space-beach` to your local Supergraph stack.
 
-***If you don't have your previous `rover dev` session running***: 
+***If you don't have your previous `rover dev` session running***:
 
-- Run `rover dev --url=https://hack-the-supergraph-start-production.up.railway.app/ --name=start` 
+- Run `rover dev --url=https://hack-the-supergraph-start-production.up.railway.app/ --name=start`
 - In another terminal window, run `rover dev` and add `space-beach` running locally
 
-Now let's head over to our sandbox (*http://localhost:3000*) and tryout a query with `@defer`:
+Now let's head over to our sandbox (*[http://localhost:3000](http://localhost:3000*) and tryout a query with `@defer`:
 
 ```graphql
 query Beaches {
@@ -164,7 +164,7 @@ fragment LocationFragment on Location {
 
 The Apollo Router supports `@defer` and it can work for any entity defined in your Supergraph, even if your subgraph doesn't support `@defer`. There isn't any extra code or steps, it just works.
 
-Finally, we can add `space-beach` to our Supergraph by publishing it to our Supergraph using [rover]. 
+Finally, we can add `space-beach` to our Supergraph by publishing it to our Supergraph using [rover].
 
 First, you'll need to [Configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
 
@@ -175,7 +175,7 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
   --routing-url "https://space-beach-production.up.railway.app/"
 ```
 
->*NOTE: make sure to repalce {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon*
+>*NOTE: make sure to replace {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon*
 
 ![](../images/space-beach-subgraph-publish.png)
 

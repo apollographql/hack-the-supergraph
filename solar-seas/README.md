@@ -1,8 +1,8 @@
 # Solar Seas - Hack the Supergraph
 
-The solar seas are beaiful and vast. As you're traveling, you find the box you started with is getting slow when reading the `CelestialBody` coordinates. It makes traveling to new locations difficult when you're far away in the solar seas.
+The solar seas are beautiful and vast. As you're traveling, you find the box you started with is getting slow when reading the `CelestialBody` coordinates. It makes traveling to new locations difficult when you're far away in the solar seas.
 
-You find a galaxtic map and now you have all the locations across the cosmos. The original box still provides some information, but this will help speed up getting those locations coordinates. We just need to `@override` the original box's information for `CelestialBody`.
+You find a galactic map and now you have all the locations across the cosmos. The original box still provides some information, but this will help speed up getting those locations coordinates. We just need to `@override` the original box's information for `CelestialBody`.
 
 Try opening up Explorer for your Supergraph and run this query:
 
@@ -31,7 +31,7 @@ type Location @key(fields: "id") {
 }
 ```
 
-We want to do is override the `celestialBody` of `Location` since we have a faster datasource. 
+We want to do is override the `celestialBody` of `Location` since we have a faster datasource.
 
 This can be done using `@overrides` directive once we've added it to the imported directives in our schema:
 
@@ -48,13 +48,13 @@ Finally, we need to add the `@override` directive to `celestialBody` and declare
 ```graphql
 type Location @key(fields: "id") {
   id: ID!
-  celestialBody: CelestialBody! @shareable @override(from: "start") 
+  celestialBody: CelestialBody! @shareable @override(from: "start")
 }
 ```
 
 *NOTE: If you named your starting subgraph something other than 'start', change that in your schema.*
 
-We can add `solar-seas` into our Supergraph by publishing it using [rover]. 
+We can add `solar-seas` into our Supergraph by publishing it using [rover].
 
 First, you'll need to [Configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
 
@@ -123,16 +123,16 @@ npm start
 
 ***If you still have your previous `rover dev` session running***: run `rover dev` in a new terminal window to add `solar-seas` to your local Supergraph stack.
 
-***If you don't have your previous `rover dev` session running***: 
+***If you don't have your previous `rover dev` session running***:
 
-- Run `rover dev --url=https://hack-the-supergraph-start-production.up.railway.app/ --name=start` 
+- Run `rover dev --url=https://hack-the-supergraph-start-production.up.railway.app/ --name=start`
 - In another terminal window, run `rover dev` and add `solar-seas` running locally
 
-Now let's head over to our sandbox (*http://localhost:3000*) and try the same query. It should execute faster and you can view the query plan showing the starting subgraph isn't used in the query plan, the new `solar-seas` subgraph is:
+Now let's head over to our sandbox (*[http://localhost:3000](http://localhost:3000*) and try the same query. It should execute faster and you can view the query plan showing the starting subgraph isn't used in the query plan, the new `solar-seas` subgraph is:
 
 ![](../images/sandbox-query-plan.png)
 
-We can add `solar-seas` into our Supergraph by publishing it using [rover]. 
+We can add `solar-seas` into our Supergraph by publishing it using [rover].
 
 First, you'll need to [Configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
 
@@ -147,4 +147,4 @@ We can see our Supergraph deployment in the "Launches" tab:
 
 (image of successful launch - blocked by bug in staging)
 
-Now let's open up Explorer and try runing the same query in explorer to see the query execute faster. Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *space-beach* next.
+Now let's open up Explorer and try running the same query in explorer to see the query execute faster. Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *space-beach* next.

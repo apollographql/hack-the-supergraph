@@ -1,10 +1,10 @@
-# Hack the Supergrpah
+# Hack the Supergraph
 
 Traveling across space is going to be much easier with the location information. We need to create a Supergraph and add it in.
 
 ## Start
 
-The box has a lot of great information in it, but you need to make an upgrade. The location information is valuable, but you know you'll want to connect other data with those locations in the future. You need to upgrade the locations to be an [entity] in our Supergraph. 
+The box has a lot of great information in it, but you need to make an upgrade. The location information is valuable, but you know you'll want to connect other data with those locations in the future. You need to upgrade the locations to be an [entity] in our Supergraph.
 
 There are two tracks in this hackathon that build out the same Supergraph. One track is for those that don't want to write code and the others is for those that do want to write code. Feel free to take whatever path you want!
 
@@ -95,7 +95,7 @@ type Query {
 }
 ```
 
-Now head over to studio.apollographql.com and let's create our Supergraph. We can get data from the box at https://hack-the-supergraph-start-production.up.railway.app/. Add this as your first subgraph and paste in the schema that we modified above.
+Now head over to [studio.apollographql.com](https://studio.apollographql.com) and let's create our Supergraph. We can get data from the box at [https://hack-the-supergraph-start-production.up.railway.app/](https://hack-the-supergraph-start-production.up.railway.app/). Add this as your first subgraph and paste in the schema that we modified above.
 
 ![Create your supergraph](../images/create-supergraph.png)
 
@@ -111,7 +111,7 @@ Congrats, you just started your Supergraph! Now navigate to explorer and query a
 
 ```graphql
 query AllLocations {
-	destinations {
+  destinations {
     name
     celestialBody {
       galaxy
@@ -151,7 +151,7 @@ extend schema
   @link(
     url: "https://specs.apollo.dev/federation/v2.0"
     import: ["@key", "@shareable"]
-  ) 
+  )
 ```
 
 Now we can make `Location` an entity with the `@key` and we'll use the `id` field as the key:
@@ -208,7 +208,7 @@ type Query {
 }
 ```
 
-With our schema modified, we'll need to create a resolver for the `Location` entity. 
+With our schema modified, we'll need to create a resolver for the `Location` entity.
 
 Open up `src/resolvers/Location.js`, this is where we'll define our `__resolveReference` resolver. If you look at `src/data/locations.js`, you'll see a `getLocation(id)` function that we'll want to use:
 
@@ -228,7 +228,7 @@ module.exports = {
 };
 ```
 
-The last step is to use the Apollo Federation library to build our schema. 
+The last step is to use the Apollo Federation library to build our schema.
 
 Open `src/index.js` and modify the `ApolloServer` constructor to use `buildSubgraphSchema` instead of `typeDefs` and `resolvers` directly:
 
@@ -248,7 +248,7 @@ Now we can start up our upgraded monolith and add it to our Supergraph:
 npm start
 ```
 
-[rover] provides a way for you to build and develop your Supergraph stack locally. 
+[rover] provides a way for you to build and develop your Supergraph stack locally.
 
 Try running `rover dev` and use the server you have running locally:
 
@@ -260,7 +260,7 @@ Now we have a graph router running locally and we can navigate to http://localho
 
 After verifying everything is working locally, it's time to move to the cloud. We already have the box hosted for you at https://hack-the-supergraph-start-production.up.railway.app/.
 
-Now head over to studio.apollographql.com and let's create our Supergraph in the cloud:
+Now head over to [studio.apollographql.com](https://studio.apollographql.com) and let's create our Supergraph in the cloud:
 
 ![Create your supergraph](../images/create-supergraph.png)
 
