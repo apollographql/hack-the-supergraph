@@ -1,0 +1,44 @@
+name: Tests and schema checks
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_call:
+    outputs:
+      schema:
+        description: "Name of the schema file from the artifact"
+        value: ${{ jobs.test-and-export-schema.outputs.schema }}
+      schema_artifact:
+        description: "Name of the artifact to download to get the schema"
+        value: ${{ jobs.test-and-export-schema.outputs.schema_artifact }}
+    secrets:
+      APOLLO_GRAPH_NAME:
+        required: false
+      APOLLO_KEY:
+        required: false
+
+env:
+  SUBGRAPH_NAME: foo-bar
+
+jobs:
+  test-and-export-schema:
+    name: Test and export schema
+    uses: ./.github/workflows/test.yml
+
+  check-schema:
+    if: false
+    needs: [test-and-export-schema]
+    name: Check schema with Apollo Studio
+    runs-on: ubuntu-latest
+    environment: apollo
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ needs.test-and-export-schema.outputs.schema_artifact }}
+      - name: Install Rover
+        run: |
+          curl -sSL https://rover.apollo.dev/nix/latest | sh
+          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - name: Check new schema with Apollo Studio
+        run: |
+          rover subgraph check ${{ secrets.APOLLO_GRAPH_NAME }}@current --schema ${{ needs.test-and-export-schema.outputs.schema }} --name ${{ env.SUBGRAPH_NAME }}
