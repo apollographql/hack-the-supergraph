@@ -51,9 +51,15 @@ type Location @key(fields:"id") {
 }
 ```
 
-`CelestialBody` contains the coordinates of a specific location and we'll need to use that type in other places in our Supergraph. For shared types, we can denote this with the `@shareable` directive on the `CelestialBody` type:
+`CelestialBody` contains the coordinates of a specific location and we'll need to use that type in other places in our Supergraph. For shared types, we can denote this with the `@shareable` directive on the `CelestialBody` type. We'll also add `@shareable` to `Location.celestialBody`:
 
 ```graphql
+type Location @key(fields:"id") {
+  id: ID!
+  name: String
+  celestialBody: CelestialBody! @shareable
+}
+
 type CelestialBody @shareable {
   galaxy: String
   latitude: Float
@@ -61,7 +67,7 @@ type CelestialBody @shareable {
 }
 ```
 
-That's it! Now we've upgraded our schema to expose `Location` as an entity :tada:. 
+That's it! Now we've upgraded our schema to expose `Location` as an entity 🎉
 
 Now the box is using the following schema:
 
@@ -75,7 +81,7 @@ extend schema
 type Location @key(fields: "id") {
   id: ID!
   name: String
-  celestialBody: CelestialBody!
+  celestialBody: CelestialBody! @shareable
 }
 
 type CelestialBody @shareable {
@@ -89,15 +95,17 @@ type Query {
 }
 ```
 
-Now head over to studio.apollographql.com and let's create our Supergraph:
+Now head over to studio.apollographql.com and let's create our Supergraph. We can get data from the box at https://hack-the-supergraph-start-production.up.railway.app/. Add this as your first subgraph and paste in the schema that we modified above.
 
-(image of creating supergraph in Studio)
+![Create your supergraph](../images/create-supergraph.png)
 
-*Make sure to copy the id of your Supergraph, we'll use it in other subgraph stations*
+![Name your supergraph](../images/name-new-supergraph.png)
 
-We can get data from the box at https://hack-the-supergraph-start-production.up.railway.app/. Add this as your first subgraph and paste in the schema that we modified above.
+>*We recommend giving this Supergraph an ID of **hack-the-supergraph-{surname}** to ensure you have a unique id. Make sure to copy the id of your Supergraph, we'll use it in other subgraph stations*
 
-(image of creating first subgraph in supergraph)
+We can use the default `main` variant for this hackathon:
+
+![](../images/supergraph-variant.png)
 
 Congrats, you just started your Supergraph! Now navigate to explorer and query all of the available locations:
 
@@ -113,6 +121,8 @@ query AllLocations {
   }
 }
 ```
+
+![](../images/start-explorer-query.png)
 
 ### I want to write code...
 
@@ -154,9 +164,15 @@ type Location @key(fields:"id") {
 }
 ```
 
-`CelestialBody` contains the coordinates of a specific location and we'll need to use that type in other places in our Supergraph. For shared types, we can denote this with the `@shareable` directive on the `CelestialBody` type:
+`CelestialBody` contains the coordinates of a specific location and we'll need to use that type in other places in our Supergraph. For shared types, we can denote this with the `@shareable` directive on the `CelestialBody` type. We'll also add `@shareable` to `Location.celestialBody`:
 
 ```graphql
+type Location @key(fields:"id") {
+  id: ID!
+  name: String
+  celestialBody: CelestialBody! @shareable
+}
+
 type CelestialBody @shareable {
   galaxy: String
   latitude: Float
@@ -164,7 +180,7 @@ type CelestialBody @shareable {
 }
 ```
 
-That's it! Now we've upgraded our schema to expose `Location` as an entity :tada:. 
+That's it! Now we've upgraded our schema to expose `Location` as an entity 🎉
 
 Now the box is using the following schema:
 
@@ -178,7 +194,7 @@ extend schema
 type Location @key(fields: "id") {
   id: ID!
   name: String
-  celestialBody: CelestialBody!
+  celestialBody: CelestialBody! @shareable
 }
 
 type CelestialBody @shareable {
@@ -236,29 +252,31 @@ npm start
 
 Try running `rover dev` and use the server you have running locally:
 
-(image of `rover dev` for `start`)
+![rover dev](../images/start-rover-dev.png)
 
 Now we have a graph router running locally and we can navigate to http://localhost:3000 to query our Supergraph:
 
-(image of Explorer)
+![Sandbox Query](../images/start-sandbox-query.png)
 
 After verifying everything is working locally, it's time to move to the cloud. We already have the box hosted for you at https://hack-the-supergraph-start-production.up.railway.app/.
 
 Now head over to studio.apollographql.com and let's create our Supergraph in the cloud:
 
-(image of creating supergraph in Studio)
+![Create your supergraph](../images/create-supergraph.png)
 
-*Make sure to copy the id of your Supergraph, we'll use it in other subgraph stations*
+![Name your supergraph](../images/name-new-supergraph.png)
 
-Add your first subgraph and paste in the schema that we modified above.
+>*We recommend giving this Supergraph an ID of **hack-the-supergraph-{surname}** to ensure you have a unique id. Make sure to copy the id of your Supergraph, we'll use it in other subgraph stations*
 
-(image of creating first subgraph in supergraph)
+We can use the default `main` variant for this hackathon:
+
+![](../images/supergraph-variant.png)
 
 Congrats, you just started your Supergraph! Now navigate to explorer and query all of the available locations:
 
 ```graphql
 query AllLocations {
-	destinations {
+  destinations {
     name
     celestialBody {
       galaxy
@@ -268,6 +286,9 @@ query AllLocations {
   }
 }
 ```
+
+![](../images/start-explorer-query.png)
+
 
 Congratulations, you've completed the starting point of the hackathon! Head to any of the subgraph stations (*cosmic-cove*, *solar-seas* or *space-beach*) next.
 

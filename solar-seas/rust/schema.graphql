@@ -8,7 +8,7 @@ type Location @key(fields: "id") {
   id: ID!
 
   # From start, this will be super slow
-  celestialBody: CelestialBody! @override(from: "start")
+  celestialBody: CelestialBody! @override(from: "start") @shareable
 }
 
 type CelestialBody @shareable {
