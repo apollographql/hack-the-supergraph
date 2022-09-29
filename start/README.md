@@ -44,7 +44,7 @@ extend schema
   )
 ```
 
-> **Note: we also imported `@shareable` we'll be using it in the next step.**
+> **Note: we also imported the `@shareable` directive, we'll be using it in the next step.**
 
 Now we can make `Location` an entity with the `@key` and we'll use the `id` field as the key:
 
