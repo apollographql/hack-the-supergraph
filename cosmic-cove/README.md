@@ -53,7 +53,7 @@ type Cove @key(fields: "id") {
 }
 ```
 
-Finally, we can add this into our Supergraph by publishing it using [rover]. 
+Finally, we can add this into our Supergraph by publishing it using [rover].
 
 First, you'll need to [Configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
 
@@ -64,9 +64,9 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
   --routing-url "https://cosmic-cove-production.up.railway.app/"
 ```
 
->*NOTE: make sure to repalce {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon*
+>*NOTE: make sure to replace {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon*
 
-Uh oh...it looks like there was a problem with the schema:
+Uh oh... it looks like there was a problem with the schema:
 
 ![](../images/cosmic-cove-composition-errors-terminal.png)
 
@@ -74,7 +74,7 @@ We can also see the build errors in the launches tab:
 
 ![](../images/cosmic-cove-composition-errors-launches.png)
 
-If we read through the build error, we can see that we're missing an `@external` directive since the `location` information is coming from the subgraph we created at the start of the hackathon. 
+If we read through the build error, we can see that we're missing an `@external` directive since the `location` information is coming from the subgraph we created at the start of the hackathon.
 
 >Cannot query field "celestialBody" on type "Location" (if the field is defined in another subgraph, you need to add it to this subgraph with @external).
 
@@ -88,7 +88,7 @@ rover subgraph check {YOUR_SUPERGRAPH_ID}@main \
   --name cosmic-cove \
 ```
 
-Not only does this validate your schema will compose, it will also validate it against any productio ntraffic for your Supergraph. This helps ensure we don't unknowingly break any of our clients consuming the graph 🎉
+Not only does this validate your schema will compose, it will also validate it against any production traffic for your Supergraph. This helps ensure we don't unknowingly break any of our clients consuming the graph 🎉
 
 Since we are requiring the `location` field to get our `cavernMap` information, we'll need to import `@external` and add it to the `celestialBody` field:
 
@@ -130,6 +130,3 @@ We can see our Supergraph deployment in the "Launches" tab:
 ![](../images/cosmic-cove-launches.png)
 
 ## I want to write code...
-
-
-
