@@ -30,7 +30,9 @@ type Query {
 
 ### I don't want to write code...
 
-First, we'll need to import the appropriate [Apollo Federation directives]. We will need the `@key` and `@shareable` directives:
+To upgrade the `Location` type to be an entity, we'll need to add the `@key` directive to the `Location` type. The `@key` directive will tell the Supergraph that the `Location` type is an entity. The `@key` directive will also tell the Supergraph what fields are needed to identify the `Location` type. In this case, the `id` field is the only field needed to identify the `Location` type.
+
+Before doing we will to use the `@link` directive to import the `@key` directive:
 
 
 ```graphql
@@ -40,6 +42,8 @@ extend schema
     import: ["@key", "@shareable"]
   )
 ```
+
+> **Note: we also imported `@shareable` we'll be using it in the next step.**
 
 Now we can make `Location` an entity with the `@key` and we'll use the `id` field as the key:
 
