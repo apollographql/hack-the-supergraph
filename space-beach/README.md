@@ -8,7 +8,8 @@ Since we created `Location` as an entity at the start of our journey, we can use
 
 Let's `@defer` the location information:
 
-## I don't want to write code...
+<details>
+ <summary><h2>I don't want to write code...</h2></summary>
 
 You find a signal coming from [https://space-beach-production.up.railway.app/](https://space-beach-production.up.railway.app/) that contains the beach information to add into your Supergraph. There is nothing special about the beach subgraph and it actually doesn't support `@defer` itself, but the Supergraph does!
 
@@ -62,7 +63,12 @@ The Apollo Router supports `@defer` and it can work for any entity defined in yo
 
 Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *solar-seas* next.
 
-## I want to write code...
+</details>
+
+---
+
+<details>
+ <summary><h2>I want to write code...</h2></summary>
 
 You find an old disc on the beach that ends up containing information about beaches and the activities at them. There are `schema.graphql` and `beaches.js` files in this folder that contain the information we'll need to setup this subgraph.
 
@@ -184,6 +190,9 @@ We can see our Supergraph deployment in the "Launches" tab:
 ![](../images/space-beach-launch.png)
 
 Now try opening Explorer and running the same query you ran in your local sandbox. Since `@defer` is supported in the Apollo Router, it works the same whether it's local or in the cloud :magic:
+</details>
+
+---
 
 Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *solar-seas* next.
 
