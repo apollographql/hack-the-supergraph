@@ -1,6 +1,6 @@
 # Solar Seas - Hack the Supergraph
 
-The solar seas are beautiful and vast. As you're traveling, you find the box you started with is getting slow when reading the `CelestialBody` coordinates. It makes traveling to new locations difficult when you're far away in the solar seas.
+The solar Seas are beautiful and vast. As you're traveling, you find the box you started with is getting slow when reading the `CelestialBody` coordinates. It makes traveling to new locations difficult when you're far away in the solar Seas.
 
 You find a galactic map and now you have all the locations across the cosmos. The original box still provides some information, but this will help speed up getting those locations coordinates. We just need to `@override` the original box's information for `CelestialBody`.
 
@@ -70,7 +70,7 @@ We can see our Supergraph deployment in the "Launches" tab:
 
 (image of successful launch - found bug in staging that is blocking this)
 
-Now let's open up Explorer and try runing the same query in explorer to see the query execute faster. Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *space-beach* next.
+Now let's open up Explorer and try running the same query in explorer to see the query execute faster. Congratulations, you've completed Solar Seas! Head to either *cosmic-cove* or *space-beach* next.
 
 </details>
 
@@ -91,10 +91,9 @@ After `rover template use` is complete, setup the project:
 npm install
 ```
 
-Now replace the `schema.graphql` file in the newly created project and move the `celestialMap.json` to the `src` folder. You will need to expose the information in `celestialMap.json` on the context to be used in your resolvers. Open the `src/index.js` and add the beaches in the context function:
+Now replace the `schema.graphql` file in the newly created project and move the `celestialMap.json` to the `src` folder. You will need to expose the information in `celestialMap.json` on the context to be used in your resolvers. Open the `src/index.js` and add the celestial map in the context function:
 
 ```javascript
-const { BeachData } = require("./beaches");
 ...
 const { url } = await startStandaloneServer(server, {
   context: async ({ req }) => ({
@@ -117,7 +116,7 @@ module.exports = {
 };
 ```
 
-Make sure your `src/resolvers/index.js` is updated to import your newly created `Beach` resolver.
+Make sure your `src/resolvers/index.js` is updated to import your newly created `celestialBody` resolver.
 
 >*NOTE: You can delete any Mutation or other resolvers from the project, they aren't needed.*
 
@@ -159,4 +158,4 @@ Now let's open up Explorer and try running the same query in explorer to see the
 
 ---
 
-Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *space-beach* next.
+Congratulations, you've completed Solar Seas! Head to either *cosmic-cove* or *space-beach* next.
