@@ -31,7 +31,7 @@ type Location @key(fields: "id") {
 }
 ```
 
-We want to override the `celestialBody` of `Location` since we have a faster datasource. 
+We want to override the `celestialBody` of `Location` since we have a faster datasource.
 
 This can be done using [`@override` directive][`@override`], but first we need to add it to the imported directives in our schema:
 
@@ -48,13 +48,13 @@ Now, we can add the `@override` directive to `celestialBody` and declare which s
 ```graphql
 type Location @key(fields: "id") {
   id: ID!
-  celestialBody: CelestialBody! @shareable @override(from: "start") 
+  celestialBody: CelestialBody! @shareable @override(from: "start")
 }
 ```
 
 *NOTE: If you named your starting subgraph something other than 'start', change that in your schema.*
 
-We can add `solar-seas` into our Supergraph by publishing it using [rover]. 
+We can add `solar-seas` into our Supergraph by publishing it using [rover].
 
 First, you'll need to [configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
 
@@ -79,7 +79,7 @@ Now let's open up Explorer and try running the same query in explorer to see the
 
 Let's rewrite the slow field in Rust—we can get started quickly with `rover template use solar-seas-subgraph --template subgraph-rust-async-graphql`. Here, "solar-seas-subgraph" is the name of the directory to create, you can name it whatever you want. If you want to complete this section with a different language, run `rover template list` to see the other available templates.
 
-![Image showing invocation of rover template use](..images/template_use.svg)
+![Image showing invocation of rover template use](../images/template_use.svg)
 
 ### Adding the data source
 
@@ -198,9 +198,9 @@ cargo run
 
 > If something else is already running on port 4001, you can change the port using `PORT=<new_port> cargo run`
 
-> ***If you don't have your previous `rover dev` session running***: 
-> 
-> In a new terminal, run `rover dev --url=https://hack-the-supergraph-start-production.up.railway.app/ --name=start` 
+> ***If you don't have your previous `rover dev` session running***:
+>
+> In a new terminal, run `rover dev --url=https://hack-the-supergraph-start-production.up.railway.app/ --name=start`
 
 In a new terminal, run `rover dev --url http://localhost:4001 --name solar-seas`.
 
@@ -208,7 +208,7 @@ Now let's head over to our sandbox (*http://localhost:3000*) and try the same qu
 
 ![](../images/sandbox-query-plan.png)
 
-We can add `solar-seas` into our Supergraph by publishing it using [rover]. 
+We can add `solar-seas` into our Supergraph by publishing it using [rover].
 
 First, you'll need to [Configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command. However, we need to get the schema first—the easiest way is to use `rover subgraph introspect` and pipe the result through:
 
