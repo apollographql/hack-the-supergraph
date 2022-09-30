@@ -1,22 +1,4 @@
-# Solar Seas - Hack the Supergraph
-
-The solar seas are beautiful and vast. As you're traveling, you find the box you started with is getting slow when reading the `CelestialBody` coordinates. It makes traveling to new locations difficult when you're far away in the solar seas.
-
-You find a galactic map and now you have all the locations across the cosmos. The original box still provides some information, but this will help speed up getting those locations coordinates. We just need to `@override` the original box's information for `CelestialBody`.
-
-Try opening up Explorer for your Supergraph and run this query:
-
-```graphql
-query AllDestinations {
-  destinations {
-    celestialBody {
-      galaxy
-    }
-  }
-}
-```
-
->*NOTE: Notice that it takes longer than 1s to respond*
+# Solar Seas - Hack the Supergraph (Python)
 
 ## Getting started
 
@@ -166,7 +148,7 @@ uvicorn main:app --host 0.0.0.0 --port 4001
 
 Now let's head over to our sandbox (*[http://localhost:3000](http://localhost:3000*) and try the same query. It should execute faster and you can view the query plan showing the starting subgraph isn't used in the query plan, the new `solar-seas` subgraph is:
 
-![](../images/sandbox-query-plan.png)
+![](../../images/sandbox-query-plan.png)
 
 We can add `solar-seas` into our Supergraph by publishing it using [rover]. Before doing that we need to export our API key:
 
@@ -188,8 +170,6 @@ We can see our Supergraph deployment in the "Launches" tab:
 (image of successful launch - blocked by bug in staging)
 
 Now let's open up Explorer and try running the same query in explorer to see the query execute faster.
-
-</details>
 
 ---
 

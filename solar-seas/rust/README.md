@@ -1,87 +1,16 @@
 # Solar Seas - Hack the Supergraph (Rust)
 
-The solar seas are beautiful and vast. As you're traveling, you find the box you started with is getting slow when reading the `CelestialBody` coordinates. It makes traveling to new locations difficult when you're far away in the solar seas.
-
-You find a galactic map, and now you have all the locations across the cosmos. The original box still provides some information, but now you can speed up those locations coordinates. We just need to [`@override`] the original box's information for `CelestialBody`.
-
-Try opening up Explorer for your Supergraph and run this query:
-
-```graphql
-query AllDestinations {
-  destinations {
-    celestialBody {
-      galaxy
-    }
-  }
-}
-```
-
->*NOTE: Notice that it takes longer than 1s to respond*
-
-## I don't want to write code...
-
-You'll find a `schema.graphql` in this folder that is a copy of the schema you need from the start; use this file or make your edits.
-
-Remember our schema from the `Location` we defined at the start:
-
-```graphql
-type Location @key(fields: "id") {
-  id: ID!
-  celestialBody: CelestialBody! @shareable # This is what we want to override
-}
-```
-
-We want to override the `celestialBody` of `Location` since we have a faster datasource.
-
-This can be done using [`@override` directive][`@override`], but first we need to add it to the imported directives in our schema:
-
-```graphql
-extend schema
-  @link(
-    url: "https://specs.apollo.dev/federation/v2.0"
-    import: ["@key", "@shareable", "@override"]
-  )
-```
-
-Now, we can add the `@override` directive to `celestialBody` and declare which subgraph we want to override:
-
-```graphql
-type Location @key(fields: "id") {
-  id: ID!
-  celestialBody: CelestialBody! @shareable @override(from: "start")
-}
-```
-
-*NOTE: If you named your starting subgraph something other than 'start', change that in your schema.*
-
-We can add `solar-seas` into our Supergraph by publishing it using [rover].
-
-First, you'll need to [configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
-
-```shell
-rover subgraph publish {YOUR_SUPERGRAPH_ID} \
-  --schema "./schema.graphql" \
-  --name solar-seas \
-  --routing-url "https://solar-seas-production.up.railway.app/"
-```
-
-We can see our Supergraph deployment in the "Launches" tab:
-
-(image of successful launch - found bug in staging that is blocking this)
-
-Now let's open up Explorer and try running the same query in explorer to see the query execute faster. Congratulations, you've completed Solar Seas! Head to either *cosmic-cove* or *space-beach* next.
-
-## I want to write code...
-
 > To follow this tutorial as-is, you need to [install Rust](https://rustup.rs).
+> 
+> In this guide we'll be using [`async-graphql`](https://async-graphql.github.io/async-graphql) which is a code first library. We'll be implementing the schema defined in `./schema.graphql` using Rust code.
 
-### Getting started
+## Getting started
 
 Let's rewrite the slow field in Rust—we can get started quickly with `rover template use solar-seas-subgraph --template subgraph-rust-async-graphql`. Here, "solar-seas-subgraph" is the name of the directory to create, you can name it whatever you want. If you want to complete this section with a different language, run `rover template list` to see the other available templates.
 
 ![Image showing invocation of rover template use](../../images/template_use.svg)
 
-### Adding the data source
+## Adding the data source
 
 Copy the `celestialMap.json` and `celestial_body.rs` files in this folder into the `src` folder in the new directory—this is going to be our data source. You will need to expose the information in `celestialMap.json` on the context to be used in your resolvers. Open `src/lib.rs` add the `celestial_body` module then import the `CelestialBody` type:
 
@@ -140,7 +69,7 @@ pub(crate) struct Location {
 
 > Note that Rust identifiers use snake_case, these will automatically be converted to the GraphQL convention of snakeCase. Also, if you named your subgraph something other than "start", you'll need to change that here.
 
-### Create the `Location` entity
+## Create the `Location` entity
 
 Finally, it's time to declare our new `Location` type as a resolvable entity. In `src/lib.rs` we can declare the module and import the `Location` type, just like we did for `CelestialBody`:
 
@@ -167,7 +96,7 @@ impl Query {
 
 > The `Context` type should be added to the `use async_graphql::{}` block at the top of the file.
 
-### Cleanup
+## Cleanup
 
 We're not creating any mutations, so we can go ahead and delete this boilerplate that was generated:
 
@@ -188,7 +117,7 @@ Then, replace `Mutation` with `EmptyMutation` wherever it appears, and add that 
 
 `thing.rs` can also be deleted, along with any `mod` or `use` statements referencing it can be removed.
 
-### Run the subgraph
+## Run the subgraph
 
 Now we can start up our subgraph and add it to our Supergraph stack locally with rover:
 
@@ -206,7 +135,7 @@ In a new terminal, run `rover dev --url http://localhost:4001 --name solar-seas`
 
 Now let's head over to our sandbox (*http://localhost:3000*) and try the same query. It should execute much faster, and you can view the query plan showing the new `solar-seas` is used:
 
-![](../images/sandbox-query-plan.png)
+![](../../images/sandbox-query-plan.png)
 
 We can add `solar-seas` into our Supergraph by publishing it using [rover].
 
