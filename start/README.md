@@ -218,7 +218,7 @@ type Query {
 }
 ```
 
-With our schema modified, we'll need to create a resolver for the `Location` entity.
+With our schema modified, we'll need to create a **reference resolver** for the `Location` entity.
 
 Open up `src/resolvers/Location.js`, this is where we'll define our `__resolveReference` resolver. If you look at `src/data/locations.js`, you'll see a `getLocation(id)` function that we'll want to use:
 
