@@ -79,7 +79,7 @@ Now let's open up Explorer and try running the same query in explorer to see the
 
 Let's rewrite the slow field in Rust—we can get started quickly with `rover template use solar-seas-subgraph --template subgraph-rust-async-graphql`. Here, "solar-seas-subgraph" is the name of the directory to create, you can name it whatever you want. If you want to complete this section with a different language, run `rover template list` to see the other available templates.
 
-![Image showing invocation of rover template use](../images/template_use.svg)
+![Image showing invocation of rover template use](../../images/template_use.svg)
 
 ### Adding the data source
 
