@@ -31,7 +31,7 @@ type Query {
 <details>
  <summary><h2>I don't want to write code...</h2></summary>
 
-To upgrade the `Location` type to be an entity, we'll need to add the `@key` directive to the `Location` type. The `@key` directive will tell the Supergraph that the `Location` type is an entity. The `@key` directive will also tell the Supergraph what fields are needed to identify the `Location` type. In this case, the `id` field is the only field needed to identify the `Location` type.
+To upgrade the `Location` type to be an entity, we need to edit the `schema.graphql` file. We'll add the `@key` directive to tell the Supergraph that the `Location` type is an entity. The `@key` directive will also tell the Supergraph what fields are needed to identify the `Location` type. In this case, the `id` field is the only field needed to identify the `Location` type.
 
 Before doing we will to use the `@link` directive to import the `@key` directive:
 
