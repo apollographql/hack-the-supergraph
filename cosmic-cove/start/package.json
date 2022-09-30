@@ -2,7 +2,6 @@
   "name": "subgraph-template-javascript-apollo-server",
   "description": "A boilerplate template for Apollo Server with javascript",
   "version": "0.0.0",
-  "author": "Apollo <watson@apollographql.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,7 +21,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@apollo/server": "^4.0.0-alpha.10",
+    "@apollo/server": "^4.0.0-rc.15",
     "@apollo/subgraph": "latest",
     "@graphql-tools/mock": "^8.7.6",
     "graphql": "latest",
