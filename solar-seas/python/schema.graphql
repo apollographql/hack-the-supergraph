@@ -1,0 +1,18 @@
+# reference schema - will be implemented in `api/schema.py`
+
+extend schema
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.0"
+    import: ["@key", "@shareable", "@override"]
+  )
+
+type Location @key(fields: "id") {
+  id: ID!
+  celestialBody: CelestialBody! @override(from: "start")
+}
+
+type CelestialBody @shareable {
+  galaxy: String
+  latitude: Float!
+  longitude: Float!
+}
