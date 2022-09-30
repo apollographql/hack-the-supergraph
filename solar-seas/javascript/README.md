@@ -18,7 +18,8 @@ query AllDestinations {
 
 >*NOTE: Notice that it takes longer than 1s to respond*
 
-## I don't want to write code...
+<details>
+ <summary><h2>I don't want to write code...</h2></summary>
 
 You'll find a `schema.graphql` in this folder that is a copy of the schema you need from the start; use this file or make your edits.
 
@@ -71,7 +72,12 @@ We can see our Supergraph deployment in the "Launches" tab:
 
 Now let's open up Explorer and try runing the same query in explorer to see the query execute faster. Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *space-beach* next.
 
-## I want to write code...
+</details>
+
+---
+
+<details>
+ <summary><h2>I want to write code...</h2></summary>
 
 You'll use the `schema.graphql` and `celestialMap.json` files in this folder to start the project.
 
@@ -147,4 +153,10 @@ We can see our Supergraph deployment in the "Launches" tab:
 
 (image of successful launch - blocked by bug in staging)
 
-Now let's open up Explorer and try running the same query in explorer to see the query execute faster. Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *space-beach* next.
+Now let's open up Explorer and try running the same query in explorer to see the query execute faster.
+
+</details>
+
+---
+
+Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *space-beach* next.
