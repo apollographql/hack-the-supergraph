@@ -2,7 +2,8 @@
 
 The coves found throughout the cosmos are large and daunting. Many travelers have been lost without a map of the cavern they are exploring. That's why the Intergalactic Society of Cavern Explorers published the a datasource that let's anyone get cavern map data with just the galactic latitude and longitude of the cove. We'll use this data with a list of coves we've been wanting to explore.
 
-## I don't want to write code...
+<details>
+ <summary><h2>I don't want to write code...</h2></summary>
 
 For this station, the schema for coves has already been put together for you. We just need to add the `cavernMap` data to our `Cove`:
 
@@ -129,4 +130,13 @@ We can see our Supergraph deployment in the "Launches" tab:
 
 ![](../images/cosmic-cove-launches.png)
 
-## I want to write code...
+</details>
+
+---
+
+<details>
+ <summary><h2>I want to write code...</h2></summary>
+
+</details>
+
+---
