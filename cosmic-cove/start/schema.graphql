@@ -1,0 +1,18 @@
+extend schema
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.0"
+    import: ["@key", "@shareable"]
+  )
+
+type Query {
+  coves: [Cove]
+}
+
+type Cove @key(fields: "id") {
+  id: ID!
+  location: Location
+}
+
+type Location @key(fields: "id") {
+  id: ID!
+}
