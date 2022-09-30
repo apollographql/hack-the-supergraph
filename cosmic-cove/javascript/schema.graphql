@@ -15,4 +15,10 @@ type Cove @key(fields: "id") {
 
 type Location @key(fields: "id") {
   id: ID!
+  celestialBody: CelestialBody!
+}
+
+type CelestialBody @shareable {
+  latitude: Float!
+  longitude: Float!
 }
