@@ -1,0 +1,35 @@
+name: Publish schema on Apollo Studio
+
+on:
+  push:
+    branches: [main]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  APOLLO_VCS_COMMIT: ${{ github.event.pull_request.head.sha }}
+  APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+
+jobs:
+  test-and-check-schema:
+    name: Test and check schema
+    uses: ./.github/workflows/check-schema.yml
+    secrets: inherit
+
+  publish-schema:
+    if: false
+    needs: [test-and-check-schema]
+    name: Publish schema on Apollo Studio
+    runs-on: ubuntu-latest
+    environment: apollo
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: ${{ needs.test-and-check-schema.outputs.schema_artifact }}
+      - name: Install Rover
+        run: |
+          curl -sSL https://rover.apollo.dev/nix/latest | sh
+          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - name: Publish your schema to registry
+        run: |
+          rover subgraph publish ${{ secrets.APOLLO_GRAPH_REF }} --schema ${{ needs.test-and-check-schema.outputs.schema }} --name ${{ secrets.SUBGRAPH_NAME }} --routing-url=${{ secrets.ROUTING_URL }}
