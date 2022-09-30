@@ -143,7 +143,7 @@ First, you'll need to [Configure rover] for your Supergraph. Once rover is confi
 
 ```shell
 rover subgraph introspect http://localhost:4001 | \
-rover subgraph publish {YOUR_SUPERGRAPH_ID} \
+rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
   --schema - \
   --name solar-seas \
   --routing-url "https://solar-seas-production.up.railway.app/"
@@ -151,7 +151,7 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID} \
 
 We can see our Supergraph deployment in the "Launches" tab:
 
-(image of successful launch - blocked by bug in staging)
+![](../../images/solar-seas-launch.png)
 
 Now let's open up Explorer and try running the same query in explorer to see the query execute faster. Congratulations, you've completed Solar Seas! Head to either *cosmic-cove* or *space-beach* next.
 

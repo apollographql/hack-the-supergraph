@@ -72,7 +72,7 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
 
 We can see our Supergraph deployment in the "Launches" tab:
 
-(image of successful launch - blocked by bug in staging)
+![](../../images/solar-seas-launch.png)
 
 Now let's open up Explorer and try running the same query in explorer to see the query execute faster.
 
