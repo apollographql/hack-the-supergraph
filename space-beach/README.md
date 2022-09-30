@@ -15,7 +15,7 @@ You find a signal coming from [https://space-beach-production.up.railway.app/](h
 
 We can add this into our Supergraph by publishing it using [rover].
 
-First, you'll need to [Configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
+First, you'll need to [configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
 
 ```shell
 rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
@@ -70,19 +70,11 @@ Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *
 <details>
  <summary><h2>I want to write code...</h2></summary>
 
-You find an old disc on the beach that ends up containing information about beaches and the activities at them. There are `schema.graphql` and `beaches.js` files in this folder that contain the information we'll need to setup this subgraph.
+You find an old disc on the beach that ends up containing information about beaches and the activities at them. There are `schema.graphql` and `beaches.js` files in this folder that contain the information we'll need to set up this subgraph.
 
-To start a new subgraph, we'll use `rover template use` to create a project from a template:
+The new subgraph is already started for you in the `start` folder—it's the same as you would get from `rover template use`. Switch into this directory and run `npm install` to get started.
 
-![](../images/rover-template-new.png)
-
-After `rover template use` is complete, setup the project:
-
-```shell
-npm install
-```
-
-Now replace the `schema.graphql` file in the newly created project and move the `beaches.js` to the `src` folder. You will need to expose the information in `beaches.js` on the context to be used in your resolvers. Open the `src/index.js` and add the beaches in the context function:
+Now replace the `schema.graphql` file in the subgraph with the one in this folder, and move the `beaches.js` to the `src` folder. You will need to expose the information in `beaches.js` on the context to be used in your resolvers. Open the `src/index.js` and add the beaches in the context function:
 
 ```javascript
 const { BeachData } = require("./beaches");
@@ -172,7 +164,7 @@ The Apollo Router supports `@defer` and it can work for any entity defined in yo
 
 Finally, we can add `space-beach` to our Supergraph by publishing it to our Supergraph using [rover].
 
-First, you'll need to [Configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
+First, you'll need to [configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
 
 ```shell
 rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
@@ -196,4 +188,5 @@ Now try opening Explorer and running the same query you ran in your local sandbo
 
 Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *solar-seas* next.
 
-[Configure rover]: https://www.apollographql.com/docs/rover/configuring
+[rover]: https://www.apollographql.com/docs/rover
+[configure rover]: https://www.apollographql.com/docs/rover/configuring
