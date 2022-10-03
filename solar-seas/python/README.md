@@ -7,9 +7,9 @@ In this guide we'll be using Python and
 library and we'll be implementing the schema defined in `./schema.graphql` using
 Python code.
 
-To start a new subgraph, we'll use
-`rover template use solar-seas-subgraph --template subgraph-python-strawberry-fastapi`
-to create a project with the Python template.
+You'll need to ensure you have the [latest version of Python](https://www.python.org/downloads/) installed to use the template.
+
+To start a new subgraph, we'll use `rover template use solar-seas-subgraph --template subgraph-python-strawberry-fastapi` to create a project with the Python template.
 
 After `rover template use` is complete, setup the project:
 
@@ -191,9 +191,21 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
   --routing-url "https://solar-seas-production.up.railway.app/"
 ```
 
-We can see our Supergraph deployment in the "Launches" tab:
+We can see our Supergraph deployment in the "Launches" tab. 
 
 ![](../../images/solar-seas-launch.png)
+
+Now let's open up Explorer and try running the same query in explorer to see the query execute faster.
+
+```graphql
+query AllDestinations {
+  destinations {
+    celestialBody {
+      galaxy
+    }
+  }
+}
+```
 
 Now let's open up Explorer and try running the same query in explorer to see the
 query execute faster.

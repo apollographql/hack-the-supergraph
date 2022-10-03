@@ -1,7 +1,7 @@
 extend schema
   @link(
     url: "https://specs.apollo.dev/federation/v2.0"
-    import: ["@key", "@shareable", "@requires"]
+    import: ["@key", "@shareable", "@requires", "@external"]
   )
 
 type Query {
@@ -17,7 +17,7 @@ type Cove @key(fields: "id") {
 
 type Location @key(fields: "id") {
   id: ID!
-  celestialBody: CelestialBody!
+  celestialBody: CelestialBody! @external
 }
 
 type CelestialBody @shareable {

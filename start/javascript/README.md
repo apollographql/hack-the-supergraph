@@ -20,7 +20,7 @@ type Query {
 }
 ```
 
-In this folder lives the code for the box (you can think of this as our existing monolith). We'll need to make a couple changes to support Apollo Federation 2:
+In this folder lives the code for the Planisphere (you can think of this as our existing monolith). We'll need to make a couple changes to support Apollo Federation 2:
 
 1. Install Apollo Federation library
 2. Modify schema and resolvers to define `Location` as an entity
@@ -76,7 +76,7 @@ type CelestialBody @shareable {
 
 That's it! Now we've upgraded our schema to expose `Location` as an entity 🎉
 
-Now the box is using the following schema:
+Now the Planisphere is using the following schema:
 
 ```graphql
 extend schema
@@ -102,9 +102,9 @@ type Query {
 }
 ```
 
-With our schema modified, we'll need to create a resolver for the `Location` entity.
+With our schema modified, we'll need to create a **reference resolver** for the `Location` entity.
 
-Open up `src/resolvers/Location.js`, this is where we've defined our `__resolveReference` resolver. If you look at `src/data/locations.js`, you'll see the `getLocation(id)` function that we're using:
+Open up `src/resolvers/Location.js`, this is where we'll define our `__resolveReference` resolver. If you look at `src/data/locations.js`, you'll see a `getLocation(id)` function that we'll want to use:
 
 ```javascript
 module.exports = {
@@ -145,29 +145,42 @@ npm start
 
 [rover] provides a way for you to build and develop your Supergraph stack locally.
 
-Try running `rover dev` and use the server you have running locally:
+In a new terminal window, try running `rover dev --url=http://localhost:4001 --name=start` and use the server you have running locally:
 
-![rover dev](../../images/start-rover-dev.png)
+![rover dev](../images/start-rover-dev.png)
 
 Now we have a graph router running locally and we can navigate to http://localhost:3000 to query our Supergraph:
 
-![Sandbox Query](../../images/start-sandbox-query.png)
+```graphql
+query AllLocations {
+  destinations {
+    name
+    celestialBody {
+      galaxy
+      latitude
+      longitude
+    }
+  }
+}
+```
 
-After verifying everything is working locally, it's time to move to the cloud. We already have the box hosted for you at https://hack-the-supergraph-start-production.up.railway.app/.
+![Sandbox Query](../images/start-sandbox-query.png)
+
+After verifying everything is working locally, it's time to move to the cloud. We already have the Planisphere hosted for you at https://hack-the-supergraph-start-production.up.railway.app/.
 
 Now head over to [studio.apollographql.com](https://studio.apollographql.com) and let's create our Supergraph in the cloud:
 
-![Create your supergraph](../../images/create-supergraph.png)
+![Create your supergraph](../images/create-supergraph.png)
 
-![Name your supergraph](../../images/name-new-supergraph.png)
+![Name your supergraph](../images/name-new-supergraph.png)
 
 >*We recommend giving this Supergraph an ID of **hack-the-supergraph-{surname}** to ensure you have a unique id. Make sure to copy the id of your Supergraph, we'll use it in other subgraph stations*
 
 We can use the default `main` variant for this hackathon:
 
-![](../../images/supergraph-variant.png)
+![](../images/supergraph-variant.png)
 
-Congrats, you just started your Supergraph! Now navigate to explorer and query all the available locations:
+Congrats, you just started your Supergraph! Now navigate to explorer and query all of the available locations:
 
 ```graphql
 query AllLocations {

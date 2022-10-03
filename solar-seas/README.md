@@ -18,6 +18,18 @@ query AllDestinations {
 
 >*NOTE: Notice that it takes longer than 1s to respond*
 
+## Summary
+
+At this subgraph station, you'll be using the `@override` directive to migrate a field on the `Location` entity defined at the start of the hackathon. In our scenario, the original field is returning slow and we have a new service that we want to use instead. 
+
+If you want to write code, this substation also offers multiple language options to build the subgraph using `rover template`. 
+ 
+## What you'll learn
+
+- How to migrate a field from one subgraph to another using `@overrides`
+- If you want to code...
+  - Creating a new subgraph using `rover template`
+
 There are multiple paths to complete this challenge, pick one of the following and go to the `README.md` file in that folder:
 
 1. [no-code](./no-code/README.md): Learn concepts without editing any code.

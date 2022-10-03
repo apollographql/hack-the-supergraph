@@ -4,13 +4,21 @@ extend schema
     import: ["@key", "@shareable", "@override"]
   )
 
+type Query {
+  coves: [Cove]
+}
+
+type Cove @key(fields: "id") {
+  id: ID!
+  location: Location
+}
+
 type Location @key(fields: "id") {
   id: ID!
-  celestialBody: CelestialBody! @shareable @override(from: "start")
+  celestialBody: CelestialBody! @override(from: "start")
 }
 
 type CelestialBody @shareable {
-  galaxy: String
   latitude: Float!
   longitude: Float!
 }

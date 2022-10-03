@@ -5,7 +5,10 @@ module.exports = {
       return context.coves.getCavernMap(latitude, longitude);
     },
     __resolveReference(parent, context) {
-      return context.coves.getCove(parent.id);
+      return {
+        ...context.coves.getCove(parent.id),
+        location: parent.location,
+      };
     },
   },
 };

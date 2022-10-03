@@ -8,7 +8,7 @@ const { addMocksToSchema } = require("@graphql-tools/mock");
 
 const resolvers = require("./resolvers");
 const { CoveData } = require("./data/coves");
-const port = process.env.PORT ?? 4002;
+const port = process.env.PORT ?? 4004;
 
 async function main() {
   const typeDefs = gql(
