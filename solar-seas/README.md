@@ -97,4 +97,6 @@ Congratulations, you've completed Solar Seas! Head to either *cosmic-cove* or *s
 
 This substation has instructions for JavaScript, Rust, or Python to develop the subgraph. Feel free to choose whichever you like.
 
+>*NOTE: This subgraph station is meant to run on port 4003 based on the other subgraphs (start is on 4001, space-beach is on 4002 and cosmic-cove is on 4004)*
+
 </details>

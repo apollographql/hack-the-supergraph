@@ -133,12 +133,12 @@ Now we can start up our subgraph and add it to our Supergraph stack locally with
 npm start
 ```
 
-***If you still have your previous `rover dev` session running***: run `rover dev` in a new terminal window to add `space-beach` to your local Supergraph stack.
+***If you still have your previous `rover dev` session running***: run `rover dev --url=http://localhost:4002 --name=space-beach` in a new terminal window to add `space-beach` to your local Supergraph stack.
 
 ***If you don't have your previous `rover dev` session running***:
 
-- Run `rover dev --url=https://hack-the-supergraph-start-production.up.railway.app/ --name=start`
-- In another terminal window, run `rover dev` and add `space-beach` running locally
+- In a new terminal window, run `rover dev --url=https://hack-the-supergraph-start-production.up.railway.app/ --name=start`
+- In another terminal window, run `rover dev --url=http://localhost:4002 --name=space-beach` and add `space-beach` running locally
 
 Now let's head over to our sandbox (*[http://localhost:3000](http://localhost:3000*) and tryout a query with `@defer`:
 

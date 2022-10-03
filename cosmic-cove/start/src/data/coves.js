@@ -9,7 +9,7 @@ class CoveData {
   }
   async getCavernMap(lat, long) {
     const results = await fetch(
-      `https://hack-the-supergraph-legacy-api-production.up.railway.app/map/${lat}/${long}`
+      `https://hack-the-supergraph-legacy-api-production.up.railway.app/maps/${lat}/${long}`
     );
     return results.json();
   }
