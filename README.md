@@ -16,7 +16,12 @@ You're going to need to grab your tools before starting this journey:
 ![](images/start-upgrade-apollo-account.png)
 
 - Download [rover] to help develop your Supergraph
+- If you are planning on doing the coding sections, you'll need to ensure you have at least [Node 14 installed].
+- We have a Discord that is being hosted by Apollo Developer Advocates to help answer any questions you might have. Feel free to join the discord and interact with us all during GraphQL Summit 2022.
+
+![](images/discord-invite.png)
 
 Once you've done everything above, head to the [`start`](./start/) folder to begin your journey of the cosmic Supergraph! There are three subgraph stations (*cosmic-cove*, *solar-seas* or *space-beach*) you can complete after finishing the [`start`](./start/).
 
 [rover]: https://www.apollographql.com/docs/rover/
+[Node 14 installed]: https://nodejs.org/en/download/

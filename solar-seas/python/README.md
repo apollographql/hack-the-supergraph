@@ -5,6 +5,8 @@
 In this guide we'll be using Python and [Strawberry GraphQL](https://strawberry.rocks). Strawberry is
 a code first library and we'll be implementing the schema defined in `./schema.graphql` using Python code.
 
+You'll need to ensure you have the [latest version of Python](https://www.python.org/downloads/) installed to use the template.
+
 To start a new subgraph, we'll use `rover template use solar-seas-subgraph --template subgraph-python-strawberry-fastapi` to create a project with the Python template.
 
 After `rover template use` is complete, setup the project:
