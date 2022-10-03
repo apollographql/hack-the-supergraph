@@ -1,7 +1,8 @@
 # Solar Seas - Hack the Supergraph (JavaScript)
 
-
 You'll use the `schema.graphql` and `celestialMap.json` files in this folder to start the project.
+
+## Getting Started
 
 To start a new subgraph, we'll use `rover template use` to create a project from a template:
 
