@@ -1,0 +1,15 @@
+type Location {
+  id: ID!
+  name: String
+  celestialBody: CelestialBody!
+}
+
+type CelestialBody {
+  galaxy: String
+  latitude: Float
+  longitude: Float
+}
+
+type Query {
+  destinations: [Location]
+}
