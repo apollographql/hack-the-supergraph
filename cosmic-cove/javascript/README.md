@@ -17,7 +17,7 @@ At this subgraph station, you'll be using `@requires` to require specific inform
 <details>
  <summary><h2>I want to write code...</h2></summary>
 
-For this station, the project for coves has already been put together for you. We just need to add the cavernMap data to our Cove. You can find the starting code in the `cosmic-cove-start` folder.
+For this station, the project for coves has already been put together for you. We just need to add the cavernMap data to our Cove. You can find the starting code in the `cosmic-cove-start/javascript` folder.
 
 First, we'll need to add the appropriate [Apollo Federation directives]. Since the cavern map is going to require location information, we'll need to add `@requires`:
 
@@ -85,7 +85,7 @@ rover subgraph check {YOUR_SUPERGRAPH_ID}@main \
 
 Not only does this validate your schema will compose, it will also validate it against any production traffic for your Supergraph. This helps ensure we don't unknowingly break any of our clients consuming the graph 🎉
 
-Ideally this is something we can run in CI on every pull request. There is an example of this in the `cosmic-cove/.github` folder; there is a similar template for any templates available in `rover template use`.
+Ideally this is something we can run in CI on every pull request. There is an example of this in the `cosmic-cove/javascript/workflows` folder; there is a similar template for any templates available in `rover template use`.
 
 Since we are requiring the `location` field to get our `cavernMap` information, we'll need to import `@external` and add it to the `celestialBody` field:
 
