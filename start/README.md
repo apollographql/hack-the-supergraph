@@ -14,11 +14,11 @@ This subgraph is the starting point of the Hack the Supergraph journey where you
 
 ## Start
 
-The box has a lot of great information in it, but you need to make an upgrade. The location information is valuable, but you know you'll want to connect other data with those locations in the future. You need to upgrade the locations to be an [entity] in our Supergraph.
+The Planisphere has a lot of great information in it, but you need to make an upgrade. The location information is valuable, but you know you'll want to connect other data with those locations in the future. You need to upgrade the locations to be an [entity] in our Supergraph.
 
 There are two tracks in this hackathon that build out the same Supergraph. One track is for those that don't want to write code and the others is for those that do want to write code. Feel free to take whatever path you want!
 
-We need to upgrade the `Location` type to be an entity. Below is the schema that is being used in the box:
+We need to upgrade the `Location` type to be an entity. Below is the schema that is being used in the Planisphere:
 
 ```graphql
 type Location  {
@@ -84,7 +84,7 @@ type CelestialBody @shareable {
 
 That's it! Now we've upgraded our schema to expose `Location` as an entity 🎉
 
-Now the box is using the following schema:
+Now the Planisphere is using the following schema:
 
 ```graphql
 extend schema
@@ -110,7 +110,7 @@ type Query {
 }
 ```
 
-Now head over to [studio.apollographql.com](https://studio.apollographql.com) and let's create our Supergraph. We can get data from the box at [https://hack-the-supergraph-start-production.up.railway.app/](https://hack-the-supergraph-start-production.up.railway.app/). Add this as your first subgraph and paste in the schema that we modified above.
+Now head over to [studio.apollographql.com](https://studio.apollographql.com) and let's create our Supergraph. We can get data from the Planisphere at [https://hack-the-supergraph-start-production.up.railway.app/](https://hack-the-supergraph-start-production.up.railway.app/). Add this as your first subgraph and paste in the schema that we modified above.
 
 ![Create your supergraph](../images/create-supergraph.png)
 
@@ -146,7 +146,7 @@ query AllLocations {
 <details>
  <summary><h2>I want to write code...</h2></summary>
 
-In this folder lives the code for the box (you can think of this as our existing monolith). We'll need to make a couple changes to support Apollo Federation 2:
+In this folder lives the code for the Planisphere (you can think of this as our existing monolith). We'll need to make a couple changes to support Apollo Federation 2:
 
 1. Install Apollo Federation library
 2. Modify schema and resolvers to define `Location` as an entity
@@ -202,7 +202,7 @@ type CelestialBody @shareable {
 
 That's it! Now we've upgraded our schema to expose `Location` as an entity 🎉
 
-Now the box is using the following schema:
+Now the Planisphere is using the following schema:
 
 ```graphql
 extend schema
@@ -291,7 +291,7 @@ query AllLocations {
 
 ![Sandbox Query](../images/start-sandbox-query.png)
 
-After verifying everything is working locally, it's time to move to the cloud. We already have the box hosted for you at https://hack-the-supergraph-start-production.up.railway.app/.
+After verifying everything is working locally, it's time to move to the cloud. We already have the Planisphere hosted for you at https://hack-the-supergraph-start-production.up.railway.app/.
 
 Now head over to [studio.apollographql.com](https://studio.apollographql.com) and let's create our Supergraph in the cloud:
 

@@ -1,8 +1,8 @@
 # Solar Seas - Hack the Supergraph
 
-The Solar Seas are beautiful and vast. As you're traveling, you find the box you started with is getting slow when reading the `CelestialBody` coordinates. It makes traveling to new locations difficult when you're far away in the solar Seas.
+The Solar Seas are beautiful and vast. As you're traveling, you find the Planisphere you started with is getting slow when reading the `CelestialBody` coordinates. It makes traveling to new locations difficult when you're far away in the solar Seas.
 
-You find a galactic map and now you have all the locations across the cosmos. The original box still provides some information, but this will help speed up getting those locations coordinates. We just need to override the original box's information for `CelestialBody`.
+You find a galactic map and now you have all the locations across the cosmos. The original Planisphere still provides some information, but this will help speed up getting those locations coordinates. We just need to override the original Planisphere's information for `CelestialBody`.
 
 Try opening up Explorer for your Supergraph and run this query:
 
