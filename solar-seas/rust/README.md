@@ -149,11 +149,19 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID} \
   --routing-url "https://solar-seas-production.up.railway.app/"
 ```
 
-We can see our Supergraph deployment in the "Launches" tab:
+We can see our Supergraph deployment in the "Launches" tab. Now let's open up Explorer and try running the same query in explorer to see the query execute faster.
 
-(image of successful launch - blocked by bug in staging)
+```graphql
+query AllDestinations {
+  destinations {
+    celestialBody {
+      galaxy
+    }
+  }
+}
+```
 
-Now let's open up Explorer and try running the same query in explorer to see the query execute faster. Congratulations, you've completed Solar Seas! Head to either *cosmic-cove* or *space-beach* next.
+Congratulations, you've completed Solar Seas! Head to either *cosmic-cove* or *space-beach* next.
 
 [`@override`]: https://www.apollographql.com/docs/federation/federated-types/federated-directives#override
 [rover]: https://www.apollographql.com/docs/rover/
