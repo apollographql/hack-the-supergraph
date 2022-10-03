@@ -6,9 +6,15 @@ As you start your journey exploring, you find an old relic that has information 
 
 You're going to need to grab your tools before starting this journey:
 
-- Create your Supergraph account at [studio.apollographql.com](https://studio.apollographql.com)
-  - If you already have an Apollo account, you'll  either have to upgrade your account to the free serverless plan or create a new account for the conference.
+- Create your Supergraph account at [studio.apollographql.com](https://studio.apollographql.com/signup)
   - If you have an Enterprise Apollo account, you'll need to create a personal account for the hackathon.
+
+![](images/start-create-apollo-account.png)
+
+  - If you already have an Apollo account, you'll  either have to upgrade your account to the free serverless plan or create a new account for the conference.
+
+![](images/start-upgrade-apollo-account.png)
+
 - Download [rover] to help develop your Supergraph
 
 Once you've done everything above, head to the [`start`](./start/) folder to begin your journey of the cosmic Supergraph! There are three subgraph stations (*cosmic-cove*, *solar-seas* or *space-beach*) you can complete after finishing the [`start`](./start/).
