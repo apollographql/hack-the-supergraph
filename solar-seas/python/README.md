@@ -2,10 +2,14 @@
 
 ## Getting started
 
-In this guide we'll be using Python and [Strawberry GraphQL](https://strawberry.rocks). Strawberry is
-a code first library and we'll be implementing the schema defined in `./schema.graphql` using Python code.
+In this guide we'll be using Python and
+[Strawberry GraphQL](https://strawberry.rocks). Strawberry is a code first
+library and we'll be implementing the schema defined in `./schema.graphql` using
+Python code.
 
-To start a new subgraph, we'll use `rover template use solar-seas-subgraph --template subgraph-python-strawberry-fastapi` to create a project with the Python template.
+To start a new subgraph, we'll use
+`rover template use solar-seas-subgraph --template subgraph-python-strawberry-fastapi`
+to create a project with the Python template.
 
 After `rover template use` is complete, setup the project:
 
@@ -18,7 +22,8 @@ pip install -r requirements.txt -r requirements-dev.txt
 
 ## Implementing the schema
 
-The schema will be defined in `api/schema.py`, feel free to replace its content with the following:
+The schema will be defined in `api/schema.py`, feel free to replace its content
+with the following:
 
 ```Python
 from typing import Optional
@@ -39,13 +44,7 @@ class Location:
     celestial_body: CelestialBody = strawberry.federation.field(override="start", shareable=True)
 
 
-@strawberry.type
-class Query:
-    solar_seas: str
-
-
 schema = strawberry.federation.Schema(
-    Query,
     types=[Location, CelestialBody],
     enable_federation_2=True,
 )
@@ -53,8 +52,9 @@ schema = strawberry.federation.Schema(
 
 ## Implementing the resolver
 
-Before implementing the resolver we should add our celestial map data to the context, allowing
-us to access it in our resolvers. To do this, we'll add a `get_context` function to `api/main.py`:
+Before implementing the resolver we should add our celestial map data to the
+context, allowing us to access it in our resolvers. To do this, we'll add a
+`get_context` function to `main.py`:
 
 ```python
 import json
@@ -76,7 +76,20 @@ async def get_context():
     }
 ```
 
-this function will read the `celestial_map.json` file and return it inside the context.
+this function will read the `celestial_map.json` file and return it inside the
+context.
+
+Create a new file called `celestial_map.json` and add the following:
+
+```json
+{
+  "1": {
+    "galaxy": "Milky Way",
+    "latitude": 12.653468,
+    "longitude": 12.44648
+  }
+}
+```
 
 Finally we need to add the `get_context` function to the `GraphQLRouter`:
 
@@ -88,8 +101,8 @@ graphql_app = GraphQLRouter(
 )
 ```
 
-Now we can implement the resolver for `Location.celestial_body`, back in `api.schema.py` we'll
-define a new function called `resolve_celestial_body`:
+Now we can implement the resolver for `Location.celestial_body`, back in
+`api/schema.py` we'll define a new function called `resolve_celestial_body`:
 
 ```python
 from strawberry.types.info import Info
@@ -105,8 +118,9 @@ def resolve_celestial_body(root: "Location", info: Info) -> CelestialBody:
     )
 ```
 
-This function will get the `celestial_map` from the context and use the `location.id` to get the
-celestial body information. Finally, we'll return a `CelestialBody` object.
+This function will get the `celestial_map` from the context and use the
+`location.id` to get the celestial body information. Finally, we'll return a
+`CelestialBody` object.
 
 Now we need to add this resolver to `Location.celestial_body`:
 
@@ -114,18 +128,20 @@ Now we need to add this resolver to `Location.celestial_body`:
 @strawberry.federation.type(keys=["id"])
 class Location:
     id: strawberry.ID
-    celestial_body: CelestialBody = strawberry.federation.field(override="start", resolver=resolve_celestial_body)
+    celestial_body: CelestialBody = strawberry.federation.field(
+        override="start", shareable=True, resolver=resolve_celestial_body
+    )
 ```
 
-Finally we need to add the reference resolver to `Location`, this will tell Apollo Federation
-how to resolve the `Location` type:
+Finally we need to add the reference resolver to `Location`, this will tell
+Apollo Federation how to resolve the `Location` type:
 
 ```python
 @strawberry.federation.type(keys=["id"])
 class Location:
     id: strawberry.ID
     celestial_body: CelestialBody = strawberry.federation.field(
-        override="start", resolver=resolve_celestial_body
+        override="start", shareable=True, resolver=resolve_celestial_body
     )
 
     @classmethod
@@ -133,30 +149,40 @@ class Location:
         return cls(id=representation["id"])
 ```
 
-Now we can start up our subgraph and add it to our Supergraph stack locally with rover:
+Now we can start up our subgraph and add it to our Supergraph stack locally with
+rover:
 
 ```shell
 uvicorn main:app --host 0.0.0.0 --port 4001
 ```
 
-***If you still have your previous `rover dev` session running***: run `rover dev` in a new terminal window to add `solar-seas` to your local Supergraph stack.
+**_If you still have your previous `rover dev` session running_**: run
+`rover dev` in a new terminal window to add `solar-seas` to your local
+Supergraph stack.
 
-***If you don't have your previous `rover dev` session running***:
+**_If you don't have your previous `rover dev` session running_**:
 
-- Run `rover dev --url=https://hack-the-supergraph-start-production.up.railway.app/ --name=start`
-- In another terminal window, run `rover dev` and add `solar-seas` running locally
+- Run
+  `rover dev --url=https://hack-the-supergraph-start-production.up.railway.app/ --name=start`
+- In another terminal window, run `rover dev` and add `solar-seas` running
+  locally
 
-Now let's head over to our sandbox (*[http://localhost:3000](http://localhost:3000*) and try the same query. It should execute faster and you can view the query plan showing the starting subgraph isn't used in the query plan, the new `solar-seas` subgraph is:
+Now let's head over to our sandbox
+(_[http://localhost:3000](http://localhost:3000_) and try the same query. It
+should execute faster and you can view the query plan showing the starting
+subgraph isn't used in the query plan, the new `solar-seas` subgraph is:
 
 ![](../../images/sandbox-query-plan.png)
 
-We can add `solar-seas` into our Supergraph by publishing it using [rover]. Before doing that we need to export our API key:
+We can add `solar-seas` into our Supergraph by publishing it using [rover].
+Before doing that we need to export our API key:
 
 ```shell
 strawberry export-schema api.schema > schema.graphql
 ```
 
-Then, you'll need to [Configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
+Then, you'll need to [Configure rover] for your Supergraph. Once rover is
+configured, we can use the `rover subgraph publish` command
 
 ```shell
 rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
@@ -169,8 +195,10 @@ We can see our Supergraph deployment in the "Launches" tab:
 
 ![](../../images/solar-seas-launch.png)
 
-Now let's open up Explorer and try running the same query in explorer to see the query execute faster.
+Now let's open up Explorer and try running the same query in explorer to see the
+query execute faster.
 
 ---
 
-Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *space-beach* next.
+Congratulations, you've completed Space Beach! Head to either _cosmic-cove_ or
+_space-beach_ next.
