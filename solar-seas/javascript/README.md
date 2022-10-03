@@ -71,7 +71,11 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
   --routing-url "https://solar-seas-production.up.railway.app/"
 ```
 
-We can see our Supergraph deployment in the "Launches" tab. Now let's open up Explorer and try running the same query in explorer to see the query execute faster.
+We can see our Supergraph deployment in the "Launches" tab. 
+
+![](../../images/solar-seas-launch.png)
+
+Now let's open up Explorer and try running the same query in explorer to see the query execute faster.
 
 ```graphql
 query AllDestinations {

@@ -95,11 +95,16 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
   --routing-url "https://cosmic-cove-production.up.railway.app/"
 ```
 
-We can also see our Supergraph deployment in the "Launches" tab:
+We can see our Supergraph deployment in the "Launches" tab:
 
-![](../images/cosmic-cove-launches.png)
-</details>
+![](../../images/cosmic-cove-launches.png)
 
 ---
 
-Congratulations, you've completed Cosmic Cove! Head to either *solar-seas* or *space-beach* next.
+Congratulations, you've completed Cosmic Cove! Head to either _solar-seas_ or _space-beach_ next.
+
+[apollo federation directives]: https://www.apollographql.com/docs/federation/federated-types/federated-directives
+
+[rover]: https://www.apollographql.com/docs/rover/
+
+[configure rover]: https://www.apollographql.com/docs/rover/configuring

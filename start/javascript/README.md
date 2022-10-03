@@ -129,9 +129,10 @@ Open `src/index.js` and modify the `ApolloServer` constructor to use `buildSubgr
 ```javascript
 const { buildSubgraphSchema } = require("@apollo/subgraph");
 
-...
+//...
 
 const server = new ApolloServer({
+  // .. existing options
   schema: buildSubgraphSchema({ typeDefs, resolvers }),
 });
 ```
@@ -194,7 +195,7 @@ query AllLocations {
 }
 ```
 
-![](../images/start-explorer-query.png)
+![](../../images/start-explorer-query.png)
 
 ---
 

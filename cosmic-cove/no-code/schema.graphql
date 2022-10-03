@@ -14,10 +14,12 @@ type Cove @key(fields: "id") {
   cavernMap: [Float]
     @requires(fields: "location { celestialBody { latitude longitude } }")
 }
+
 type Location @key(fields: "id") {
   id: ID!
   celestialBody: CelestialBody! @external
 }
+
 type CelestialBody @shareable {
   latitude: Float!
   longitude: Float!

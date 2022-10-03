@@ -1,5 +1,7 @@
 # Hack the Supergraph
 
+[![Discord](https://img.shields.io/discord/1022972389463687228?label=Discord&logo=discord&logoColor=white&style=for-the-badge&color=blue)](https://discord.gg/d3ct4wZD)
+
 Welcome to GraphQL Summit '22, the year of the Supergraph.
 
 As you start your journey exploring, you find a Planisphere that has information of locations all over space. The Planisphere looks old and isn't that fast, but it seems to get the job done. You grab the Planisphere and think of all the galaxies you can discover with it. *You have to put this in your Supergraph so others can access it also, you never know when you meet a space friend.*

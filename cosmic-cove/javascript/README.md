@@ -65,14 +65,15 @@ module.exports = {
 Now we can start up our subgraph and add it to our Supergraph stack locally with rover:
 
 ```shell
+npm install
 npm start
 ```
 
 Uh oh... it looks like there was a problem with the schema:
 
-![](../images/cosmic-cove-composition-errors-apollo-server.png)
+![](../../images/cosmic-cove-composition-errors-apollo-server.png)
 
-It's nice that `@apollo/subgraph` has this validation, but there are also other tools in `rover` to validate a subgraph's schema. 
+It's nice that `@apollo/subgraph` has this validation, but there are also other tools in `rover` to validate a subgraph's schema.
 
 Try running the rover command for schema validation:
 
@@ -90,15 +91,15 @@ Since we are requiring the `location` field to get our `cavernMap` information, 
 
 ```graphql
 extend schema
-  @link(
-    url: "https://specs.apollo.dev/federation/v2.0"∂
-    import: [ "@key", "@shareable", "@requires", "@external" ]
-  )
+@link(
+  url: "https://specs.apollo.dev/federation/v2.0"
+  import: [ "@key", "@shareable", "@requires", "@external" ]
+)
 type Cove @key(fields: "id") {
   id: ID!
   location: Location
   cavernMap: [Float]
-    @requires(fields: "location { celestialBody { latitude longitude } }")
+  @requires(fields: "location { celestialBody { latitude longitude } }")
 }
 type Location @key(fields: "id") {
   id: ID!
@@ -112,7 +113,7 @@ type CelestialBody @shareable {
 
 Finally, we can add this into our Supergraph by publishing it using [rover].
 
-First, you'll need to [Configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
+First, you'll need to [configure rover] for your Supergraph. Once rover is configured, we can use the `rover subgraph publish` command
 
 ```shell
 rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
@@ -121,13 +122,18 @@ rover subgraph publish {YOUR_SUPERGRAPH_ID}@main \
   --routing-url "https://cosmic-cove-production.up.railway.app/"
 ```
 
->*NOTE: make sure to replace {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon*
+> _NOTE: make sure to replace {YOUR_SUPERGRAPH_ID} with the id of the Supergraph you created at the start of the hackathon_
 
 We can see our Supergraph deployment in the "Launches" tab:
 
-![](../images/cosmic-cove-launches.png)
-</details>
+![](../../images/cosmic-cove-launches.png)
 
 ---
 
-Congratulations, you've completed Cosmic Cove! Head to either *solar-seas* or *space-beach* next.
+Congratulations, you've completed Cosmic Cove! Head to either _solar-seas_ or _space-beach_ next.
+
+[apollo federation directives]: https://www.apollographql.com/docs/federation/federated-types/federated-directives
+
+[rover]: https://www.apollographql.com/docs/rover/
+
+[configure rover]: https://www.apollographql.com/docs/rover/configuring
