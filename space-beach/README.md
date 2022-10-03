@@ -2,11 +2,20 @@
 
 Welcome to the beach! Beaches in space are a little different than beaches we think of on Earth. It's always fun playing games at the beach, but in space, we need to know how risky some of the activities are.
 
+## Summary
+
 We have all the time in the cosmos, but we want to start planning activities and where we should go based on what we can do. The beach activity information is needed right away, but the location coordinates can be deferred.
 
-Since we created `Location` as an entity at the start of our journey, we can use `@defer` to ensure our graph router returns the activity information as soon as it has it.
+The Apollo Router supports `@defer` for any [entity] without any additional work. Since we created `Location` as an entity at the start of our journey, we can use `@defer` to ensure our graph router returns the activity information as soon as it has it. You'll use a pre-defined schema at this station. 
 
 Let's `@defer` the location information:
+
+## What you'll learn
+
+- Using `@defer` in your Supergraph
+- Using [rover] to publish your subgraph schema into your Supergraph
+- If you want to code...
+  - Creating a new subgraph using `rover template`
 
 <details>
  <summary><h2>I don't want to write code...</h2></summary>

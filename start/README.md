@@ -2,6 +2,16 @@
 
 Traveling across space is going to be much easier with the location information. We need to create a Supergraph and add it in.
 
+## Summary
+
+This subgraph is the starting point of the Hack the Supergraph journey where you will begin creating your Supergraph. At this station you will be introduced to creating a `Location` [entity] that will be used throughout the hackathon. 
+
+## What you'll learn
+
+- Upgrading your GraphQL Server to support Apollo Federation 2
+- Defining an [entity] in your schema
+- Creating a Supergraph with Apollo
+
 ## Start
 
 The box has a lot of great information in it, but you need to make an upgrade. The location information is valuable, but you know you'll want to connect other data with those locations in the future. You need to upgrade the locations to be an [entity] in our Supergraph.
