@@ -12,8 +12,7 @@ At this subgraph station, you'll be using `@requires` to require specific inform
 - Using [rover] to publish your subgraph schema into your Supergraph
 - Using [rover] to validation your subgraph schema with your Supergraph
 
-<details>
- <summary><h2>I don't want to write code...</h2></summary>
+## Start
 
 For this station, the schema for coves has already been put together for you:
 

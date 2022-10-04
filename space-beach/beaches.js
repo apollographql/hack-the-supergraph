@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const fetch = require("cross-fetch");
 const baseUrl =
   "https://hack-the-supergraph-legacy-api-production.up.railway.app";
 

@@ -14,8 +14,7 @@ At this subgraph station, you'll be using `@requires` to require specific inform
 - If you want to code...
   - Creating a new subgraph using `rover template`
 
-<details>
- <summary><h2>I want to write code...</h2></summary>
+## Start
 
 For this station, the project for coves has already been put together for you. We just need to add the cavernMap data to our Cove. You can find the starting code in the `cosmic-cove-start/javascript` folder.
 

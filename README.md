@@ -23,7 +23,7 @@ You're going to need to grab your tools before starting this journey:
 
 ![](images/discord-invite.png)
 
-Once you've done everything above, head to the [`start`](./apollo-lounge-start/) folder to begin your journey of the cosmic Supergraph! There are three subgraph stations (*cosmic-cove*, *solar-seas* or *space-beach*) you can complete after finishing the [`start`](./apollo-lounge-start).
+Once you've done everything above, head to the [`start`](./start/) folder to begin your journey of the cosmic Supergraph! There are three subgraph stations (*cosmic-cove*, *solar-seas* or *space-beach*) you can complete after finishing the [`start`](./start).
 
 [rover]: https://www.apollographql.com/docs/rover/
 [Node 14 installed]: https://nodejs.org/en/download/

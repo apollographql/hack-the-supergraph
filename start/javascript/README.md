@@ -164,21 +164,21 @@ query AllLocations {
 }
 ```
 
-![Sandbox Query](../images/start-sandbox-query.png)
+![Sandbox Query](../../images/start-sandbox-query.png)
 
 After verifying everything is working locally, it's time to move to the cloud. We already have the Planisphere hosted for you at https://hack-the-supergraph-start-production.up.railway.app/.
 
 Now head over to [studio.apollographql.com](https://studio.apollographql.com) and let's create our Supergraph in the cloud:
 
-![Create your supergraph](../images/create-supergraph.png)
+![Create your supergraph](../../images/create-supergraph.png)
 
-![Name your supergraph](../images/name-new-supergraph.png)
+![Name your supergraph](../../images/name-new-supergraph.png)
 
 >*We recommend giving this Supergraph an ID of **hack-the-supergraph-{surname}** to ensure you have a unique id. Make sure to copy the id of your Supergraph, we'll use it in other subgraph stations*
 
 We can use the default `main` variant for this hackathon:
 
-![](../images/supergraph-variant.png)
+![](../../images/supergraph-variant.png)
 
 Congrats, you just started your Supergraph! Now navigate to explorer and query all of the available locations:
 

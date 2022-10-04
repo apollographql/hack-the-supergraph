@@ -4,7 +4,7 @@ Traveling across space is going to be much easier with the location information.
 
 ## Start
 
-The box has a lot of great information in it, but you need to make an upgrade. The location information is valuable, but you know you'll want to connect other data with those locations in the future. You need to upgrade the locations to be an [entity] in our Supergraph.
+The Planisphere has a lot of great information in it, but you need to make an upgrade. The location information is valuable, but you know you'll want to connect other data with those locations in the future. You need to upgrade the locations to be an [entity] in our Supergraph.
 
 There are two tracks in this hackathon that build out the same Supergraph. One track is for those that don't want to write code and the others is for those that do want to write code. Feel free to take whatever path you want!
 

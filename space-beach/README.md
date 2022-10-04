@@ -13,7 +13,7 @@ Let's `@defer` the location information:
 ## What you'll learn
 
 - Using `@defer` in your Supergraph
-- Using [rover] to publish your subgraph schema into your Supergraph
+- Using `rover dev` to create a Supergraph stack locally
 - If you want to code...
   - Creating a new subgraph using `rover template`
 
@@ -21,6 +21,20 @@ Let's `@defer` the location information:
  <summary><h2>I don't want to write code...</h2></summary>
 
 You find a signal coming from [https://space-beach-production.up.railway.app/](https://space-beach-production.up.railway.app/) that contains the beach information to add into your Supergraph. There is nothing special about the beach subgraph and it actually doesn't support `@defer` itself, but the Supergraph does!
+
+We can use `rover dev` to create a Supergraph stack locally and test out this new signal. 
+
+First, we need to start up the Supergraph locally with our starting subgraph:
+
+```shell
+rover dev --url=https://hack-the-supergraph-start-production.up.railway.app/ --name=start
+```
+
+Now we can add our new signal to the Supergraph stack:
+
+```shell
+rover dev --url=https://space-beach-production.up.railway.app/ --name=space-beach
+```
 
 We can add this into our Supergraph by publishing it using [rover].
 
@@ -81,7 +95,9 @@ Congratulations, you've completed Space Beach! Head to either *cosmic-cove* or *
 
 You find an old disc on the beach that ends up containing information about beaches and the activities at them. There are `schema.graphql` and `beaches.js` files in this folder that contain the information we'll need to set up this subgraph.
 
-The new subgraph is already started for you in the `start` folder—it's the same as you would get from `rover template use`. Switch into this directory and run `npm install` to get started.
+The new subgraph is already started for you in the `start` folder—it's the same as you would get from `rover template use`. Switch into this directory and run `npm install` to get started. 
+
+The `beaches.js` file uses `cross-fetch` so you'll need to install that package in the newly created project. You can do this by running `npm install cross-fetch` in the root of the project directory. 
 
 Now replace the `schema.graphql` file in the subgraph with the one in this folder, and move the `beaches.js` to the `src` folder. You will need to expose the information in `beaches.js` on the context to be used in your resolvers. Open the `src/index.js` and add the beaches in the context function:
 
