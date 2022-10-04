@@ -14,33 +14,6 @@ This subgraph is the starting point of the Hack the Supergraph journey where you
 
 ## Start
 
-The Planisphere has a lot of great information in it, but you need to make an upgrade. The location information is valuable, but you know you'll want to connect other data with those locations in the future. You need to upgrade the locations to be an [entity] in our Supergraph.
-
-There are two tracks in this hackathon that build out the same Supergraph. One track is for those that don't want to write code and the others is for those that do want to write code. Feel free to take whatever path you want!
-
-We need to upgrade the `Location` type to be an entity. Below is the schema that is being used in the Planisphere:
-
-```graphql
-type Location  {
-  id: ID!
-  name: String
-  celestialBody: CelestialBody!
-}
-
-type CelestialBody {
-  galaxy: String
-  latitude: Float
-  longitude: Float
-}
-
-type Query {
-  destinations: [Location]
-}
-```
-
-<details>
- <summary><h2>I don't want to write code...</h2></summary>
-
 The completed Planisphere's schema (`apollo-lounge-start/schema.graphql`) is ready for you to push into your Supergraph. Before we do that, let's look at what the Planisphere's schema looked like before getting to the completed version:
 
 ```graphql
@@ -101,15 +74,15 @@ That's it! Now we've talked about how the schema was upgrade to expose `Location
 
 Now head over to [studio.apollographql.com](https://studio.apollographql.com) and let's create our Supergraph. We can get data from the Planisphere at [https://hack-the-supergraph-start-production.up.railway.app/](https://hack-the-supergraph-start-production.up.railway.app/). Add this as your first subgraph and make sure to name it.
 
-![Create your supergraph](../images/create-supergraph.png)
+![Create your supergraph](../../images/create-supergraph.png)
 
-![Name your supergraph](../images/name-new-supergraph.png)
+![Name your supergraph](../../images/name-new-supergraph.png)
 
 >*We recommend giving this Supergraph an ID of **hack-the-supergraph-{surname}** to ensure you have a unique id. Make sure to copy the id of your Supergraph, we'll use it in other subgraph stations*
 
 We can use the default `main` variant for this hackathon:
 
-![](../images/supergraph-variant.png)
+![](../../images/supergraph-variant.png)
 
 Congrats, you just started your Supergraph! Now navigate to explorer and query all of the available locations:
 

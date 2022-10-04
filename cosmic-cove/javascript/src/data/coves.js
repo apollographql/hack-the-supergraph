@@ -1,17 +1,23 @@
-const coves = [{ id: "1", location: { id: "1" } }];
+const fetch = require("cross-fetch");
 
 class CoveData {
-  getCoves() {
-    return coves;
+  async getCoves() {
+    const results = await fetch(
+      `https://hack-the-supergraph-legacy-api-production.up.railway.app/coves/`
+    );
+    return await results.json();
   }
-  getCove(id) {
-    return coves.find((c) => c.id == id);
+  async getCove(id) {
+    const results = await fetch(
+      `https://hack-the-supergraph-legacy-api-production.up.railway.app/coves/${id}`
+    );
+    return await results.json();
   }
   async getCavernMap(lat, long) {
     const results = await fetch(
       `https://hack-the-supergraph-legacy-api-production.up.railway.app/maps/${lat}/${long}`
     );
-    return results.json();
+    return await results.json();
   }
 }
 

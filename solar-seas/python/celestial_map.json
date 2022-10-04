@@ -1,7 +1,17 @@
 {
-  "1": {
-    "galaxy": "Milky Way",
-    "latitude": 12.653468,
-    "longitude": 12.44648
+  "efa21b82-bbb8-4ec6-8f98-6dd15f3f6153": {
+    "galaxy": "Earth",
+    "latitude": 7.155,
+    "longitude": -11.26064
+  },
+  "ea8f7105-9f49-41d0-8e32-29d1c63bdc43": {
+    "galaxy": "Jupiter",
+    "latitude": 6.09,
+    "longitude": 100.464
+  },
+  "c3af1ee5-e72b-474f-91df-00cb87fa077c": {
+    "galaxy": "Saturn",
+    "latitude": 5.51,
+    "longitude": 113.665
   }
 }
