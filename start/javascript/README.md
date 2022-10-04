@@ -147,7 +147,7 @@ npm start
 
 In a new terminal window, try running `rover dev --url=http://localhost:4001 --name=start` and use the server you have running locally:
 
-![rover dev](../images/start-rover-dev.png)
+![rover dev](../../images/start-rover-dev.png)
 
 Now we have a graph router running locally and we can navigate to http://localhost:3000 to query our Supergraph:
 
