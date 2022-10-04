@@ -74,6 +74,8 @@ That's it! Now we've talked about how the schema was upgrade to expose `Location
 
 Now head over to [studio.apollographql.com](https://studio.apollographql.com) and let's create our Supergraph. We can get data from the Planisphere at [https://hack-the-supergraph-start-production.up.railway.app/](https://hack-the-supergraph-start-production.up.railway.app/). Add this as your first subgraph and make sure to name it.
 
+**You can click the next button, no need for advanced setup stuff**
+
 ![Create your supergraph](../../images/create-supergraph.png)
 
 ![Name your supergraph](../../images/name-new-supergraph.png)
