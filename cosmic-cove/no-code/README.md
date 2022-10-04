@@ -10,7 +10,7 @@ At this subgraph station, you'll be using `@requires` to require specific inform
 
 - Using external subgraph fields using `@requires` and `@external`
 - Using [rover] to publish your subgraph schema into your Supergraph
-- Using [rover] to validation your subgraph schema with your Supergraph
+- Using [rover] to validate your subgraph schema with your Supergraph
 
 ## Start
 
