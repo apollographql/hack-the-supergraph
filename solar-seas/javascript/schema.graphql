@@ -1,12 +1,12 @@
 extend schema
   @link(
     url: "https://specs.apollo.dev/federation/v2.0"
-    import: ["@key", "@shareable"]
+    import: ["@key", "@shareable", "@override"]
   )
 
 type Location @key(fields: "id") {
   id: ID!
-  celestialBody: CelestialBody!
+  celestialBody: CelestialBody! @override(from: "start")
 }
 
 type CelestialBody @shareable {

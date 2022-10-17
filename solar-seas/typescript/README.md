@@ -28,7 +28,7 @@ const context: ContextFunction<
 Finally, you need to wire up the resolvers for your schema. Create a `src/resolvers/Location.ts` for the `celestialBody` field:
 
 ```typescript
-export default const Location = {
+export const Location = {
   Location: {
     celestialBody(location, args, context) {
       const result = context.celestialMap.find((c) => c.id == location.id);
