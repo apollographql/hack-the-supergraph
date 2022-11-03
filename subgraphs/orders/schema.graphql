@@ -1,4 +1,8 @@
-extend schema @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key", "@shareable"])
+extend schema
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.0"
+    import: ["@key", "@shareable"]
+  )
 
 type Query {
   """
@@ -7,15 +11,21 @@ type Query {
   order(id: ID!): Order
 }
 
-"""Returns information about a specific purchase"""
+"""
+Returns information about a specific purchase
+"""
 type Order @key(fields: "id") {
   """
   Each order has a unique id which is separate from the user or items they bought
   """
   id: ID!
-  """The user who made the purchase"""
+  """
+  The user who made the purchase
+  """
   buyer: User!
-  """A list of all the items they purchased. """
+  """
+  A list of all the items they purchased.
+  """
   items: [Product!]!
   total: Money
 }

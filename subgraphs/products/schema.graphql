@@ -13,6 +13,10 @@ type Query {
   Get a specific product by id. Useful for the product details page or checkout page
   """
   product(id: ID!): Product
+  """
+  Top products for home display
+  """
+  products: [Product]
 }
 
 """
