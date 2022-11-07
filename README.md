@@ -1,4 +1,6 @@
-# Hack the Supergraph
+# Hack the Supergraph 
+
+# REVAMP IN PROGRESS, Switch to the [GraphQL Summit 2022 Branch](https://github.com/apollographql/hack-the-supergraph/tree/graphql-summit-2022) 
 
 [![Discord](https://img.shields.io/discord/1022972389463687228?label=Discord&logo=discord&logoColor=white&style=for-the-badge&color=blue)](https://discord.gg/d3ct4wZD)
 
