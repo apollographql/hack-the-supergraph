@@ -1,13 +1,20 @@
-import {Box, HStack} from '@chakra-ui/react';
+import SettingsModal from './SettingsModal';
+import {Box, Flex} from '@chakra-ui/react';
 import {Link} from 'react-router-dom';
 import {Logo} from './Logo';
 
 export default function Nav() {
   return (
-    <Box as={Link} to="/">
-      <HStack p="4">
+    <Flex
+      flexDir="row"
+      justifyContent="space-between"
+      alignItems="center"
+      p="4"
+    >
+      <Box as={Link} to="/">
         <Logo />
-      </HStack>
-    </Box>
+      </Box>
+      <SettingsModal />
+    </Flex>
   );
 }
