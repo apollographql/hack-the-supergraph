@@ -91,21 +91,23 @@ export default function Product() {
                 <Heading as="h2" size="md" mb="2" marginTop={8}>
                   What other users have to say
                 </Heading>
-                {reviews?.length === 0 ? (
-                  <Text>No reviews yet</Text>
-                ) : (
-                  reviews?.map(({content, rating}, i) => (
-                    <Stack
-                      direction="column"
-                      spacing="1"
-                      key={`${i}-${rating}`}
-                      py="8"
-                    >
-                      <ReviewRating size={16} rating={rating} />
-                      <Text py="2">{content}</Text>
-                    </Stack>
-                  ))
-                )}
+                <Skeleton isLoaded={reviews !== undefined} h="100px">
+                  {reviews?.length === 0 ? (
+                    <Text>No reviews yet</Text>
+                  ) : (
+                    reviews?.map(({content, rating}, i) => (
+                      <Stack
+                        direction="column"
+                        spacing="1"
+                        key={`${i}-${rating}`}
+                        py="8"
+                      >
+                        <ReviewRating size={16} rating={rating} />
+                        <Text py="2">{content}</Text>
+                      </Stack>
+                    ))
+                  )}
+                </Skeleton>
               </Stack>
             </Stack>
           </Flex>
