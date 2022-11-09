@@ -9,7 +9,7 @@ on:
 jobs:
   publish_readme:
     needs: check_readme_changed
-    if: ${{ steps.check_readme_changed.outputs.changed }} == 'true'
+    if: jobs.check_readme_changed.outputs.changed == 'true'
     name: Publish repository README to GraphOS
     runs-on: ubuntu-latest
     outputs:
