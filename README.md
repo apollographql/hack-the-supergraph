@@ -1,31 +1,33 @@
-# Hack the Supergraph 
+# Hack the Supergraph
 
-# REVAMP IN PROGRESS, Switch to the [GraphQL Summit 2022 Branch](https://github.com/apollographql/hack-the-supergraph/tree/graphql-summit-2022) 
+# Getting started
+Welcome to the **{{ graph.name }}** API! 🎉 Get familiar with available objects in the [Schema Reference]({{ graph.url.reference }}), or try querying this graph using [Explorer]({{ graph.url.explorer }}).
 
-[![Discord](https://img.shields.io/discord/1022972389463687228?label=Discord&logo=discord&logoColor=white&style=for-the-badge&color=blue)](https://discord.gg/d3ct4wZD)
+This is the default README content. You can customize it however you like. Graph Maintainers, you can edit to include any information that is relevant for developers working with this graph by clicking the pencil icon in the top right corner. ☝
 
-Welcome to GraphQL Summit '22, the year of the Supergraph.
+## What this graph is all about
 
-As you start your journey exploring, you find a Planisphere that has information of locations all over space. The Planisphere looks old and isn't that fast, but it seems to get the job done. You grab the Planisphere and think of all the galaxies you can discover with it. *You have to put this in your Supergraph so others can access it also, you never know when you meet a space friend.*
+Describe the purpose and use cases for your graph here. This is where you can tell the story of your API, and all of its deep magic...🦄🌌✨
 
-You're going to need to grab your tools before starting this journey:
+## Accessing the graph
 
-- Create your Supergraph account at [studio.apollographql.com](https://studio.apollographql.com/signup)
-  - If you have an Enterprise Apollo account, you'll need to create a personal account for the hackathon.
+🛰 You can send operations to this graph at `{{ graph.url.endpoint }}`
 
-![](images/start-create-apollo-account.png)
+📇 The Apollo Registry holds the canonical location of your schema. In the registry, this graph is referred to by its “graph ref”, which is: **{{ graph.ref }}**.
 
-  - If you already have an Apollo account, you'll  either have to upgrade your account to the free serverless plan or create a new account for the conference.
+*(Note: you can [download Rover](https://www.apollographql.com/docs/rover/getting-started/), the Apollo CLI tool for working with your schema locally.)*
 
-![](images/start-upgrade-apollo-account.png)
+## How to authenticate to this graph
+Authentication information has not been added to this README yet. Be sure to let your API developers know how to authenticate, and where to find the auth tokens they’ll need to authenticate with.🔐 👀
 
-- Download [rover] to help develop your Supergraph
-- If you are planning on doing the coding sections, you'll need to ensure you have at least [Node 14 installed].
-- We have a Discord that is being hosted by Apollo Developer Advocates to help answer any questions you might have. Feel free to join the discord and interact with us all during GraphQL Summit 2022.
+## Running operations
+Include some operations in your README to help your API developers get started with your graph. Using a code block designated as  ````gql` will render the operation with the Run in Explorer mini-button, and will load the operation in Explorer when clicked!
 
-![](images/discord-invite.png)
+```gql
+query Query {
+	id
+}
+```
 
-Once you've done everything above, head to the [`start`](./start/) folder to begin your journey of the cosmic Supergraph! There are three subgraph stations (*cosmic-cove*, *solar-seas* or *space-beach*) you can complete after finishing the [`start`](./start).
-
-[rover]: https://www.apollographql.com/docs/rover/
-[Node 14 installed]: https://nodejs.org/en/download/
+### Getting help with this graph
+For support working with this graph, contact the Graph Admin via [email(replace me)](mailto:email@email.com) or [chat(put your chat link here)](#chatlink).
