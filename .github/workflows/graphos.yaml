@@ -8,7 +8,8 @@ on:
 
 jobs:
   publish_readme:
-    if: false
+    needs: check_readme_changed
+    if: steps.check_readme_changed.outputs.changed == 'true'
     name: Publish repository README to GraphOS
     runs-on: ubuntu-latest
     outputs:
@@ -37,6 +38,9 @@ jobs:
           files: |
             README.md
 
-      - name: Run step if any file(s) in the docs folder change
+      - id: check_readme
+        name: Run step if any file(s) in the docs folder change
         if: steps.changed-files-specific.outputs.any_changed == 'true'
-        run: echo ${{ needs.publish_readme }} 
+        run: echo "::set-output changed=true"
+    outputs:
+      readme_changed: ${{ steps.check_readme.outputs.changed }}
