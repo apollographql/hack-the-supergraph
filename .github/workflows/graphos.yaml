@@ -9,7 +9,7 @@ on:
 jobs:
   publish_readme:
     needs: check_readme_changed
-    if: needs.check_readme_changed.outputs.changed == true
+    if: needs.check_readme_changed.outputs.changed == "true"
     name: Publish repository README to GraphOS
     runs-on: ubuntu-latest
     outputs:
@@ -29,6 +29,8 @@ jobs:
   check_readme_changed:
     name: Check if README changed
     runs-on: ubuntu-latest
+    outputs:
+      readme_changed: ${{ steps.check_readme.outputs.changed }}
     steps:
       - uses: actions/checkout@v3
       - name: Get changed files in the docs folder
@@ -41,6 +43,5 @@ jobs:
       - id: check_readme
         name: Run step if any file(s) in the docs folder change
         if: steps.changed-files-specific.outputs.any_changed == 'true'
-        run: echo "::set-output changed=true"
-    outputs:
-      readme_changed: ${{ steps.check_readme.outputs.changed }}
+        run: echo "changed=true" >> $GITHUB_OUTPUT
+    
