@@ -1,7 +1,8 @@
 name: Tests and Checks
 
 on: 
-  push:
+  pull_request:
+    types: [assigned, opened, synchronize, reopened, review_requested]
     paths:
       - 'subgraphs/products/**'
 
