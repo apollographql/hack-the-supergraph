@@ -1,0 +1,29 @@
+name: Tests and Checks
+
+on: 
+  pull_request:
+    types: [assigned, opened, synchronize, reopened, review_requested]
+    paths:
+      - 'subgraphs/**/**'
+
+jobs:
+  test_changed_subgraphs: 
+    runs-on: ubuntu-latest
+    outputs:
+      subgraph_name: ${{ steps.changed_subgraph_folder.outputs.subgraph_name }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get changed files in the docs folder
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v34
+        with:
+          files: 'subgraphs/**'
+          dir_names: 'true'
+
+      - name: List all changed files
+        run: |
+          for subgraph in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "$subgraph was changed"
+            cd $GITHUB_PATH/subgraphs/$subgraph
+            npm test
+          done
