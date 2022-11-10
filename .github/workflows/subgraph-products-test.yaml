@@ -4,7 +4,7 @@ on:
   pull_request:
     types: [assigned, opened, synchronize, reopened, review_requested]
     paths:
-      - 'subgraphs/products'
+      - 'subgraphs/products/**'
 
 jobs:
   test_changed_subgraph_schemas: 
