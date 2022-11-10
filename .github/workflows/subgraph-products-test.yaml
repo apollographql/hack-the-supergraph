@@ -7,8 +7,7 @@ on:
       - 'subgraphs/products/**'
 
 jobs:
-  test_changed_subgraph_schemas: 
-    needs: schema_validation
+  unit_tests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,3 +19,7 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm run test
+        
+  test_changed_subgraph_schemas: 
+    needs: schema_validation
+    runs-on: ubuntu-latest
