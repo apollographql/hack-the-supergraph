@@ -1,10 +1,10 @@
-name: Deploy Products to GraphOS
+name: Deploy Orders to GraphOS
 on:
   push:
     branches:
       - main
     paths:
-      - 'subgraphs/products/**'
+      - 'subgraphs/orders/**'
       
 jobs:
   publish_schema:
@@ -19,8 +19,8 @@ jobs:
           curl -sSL https://rover.apollo.dev/nix/latest | sh
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
       - name: Publish Schema
-        working-directory: "./subgraphs/products"
-        run: rover subgraph publish ${{ secrets.APOLLO_GRAPH_REF }} --schema schema.graphql --name products --routing-url ${{ secrets.PRODUCTS_PRODUCTION_URL }}
+        working-directory: "./subgraphs/orders"
+        run: rover subgraph publish ${{ secrets.APOLLO_GRAPH_REF }} --schema schema.graphql --name orders --routing-url ${{ secrets.ORDERS_PRODUCTION_URL }}
         env:
           APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
           APOLLO_VCS_COMMIT: ${{ github.event.pull_request.head.sha }}
@@ -35,9 +35,9 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v34
         with:
-          files: subgraphs/products/schema.graphql
+          files: subgraphs/orders/schema.graphql
 
       - id: check_schema
         name: Run step if any file(s) in the docs folder change
-        if: contains(steps.changed-files.outputs.modified_files, 'subgraphs/products/schema.graphql')
+        if: contains(steps.changed-files.outputs.modified_files, 'subgraphs/orders/schema.graphql')
         run: echo "schema_changed=true" >> $GITHUB_OUTPUT
