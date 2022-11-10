@@ -34,12 +34,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Get changed files in the docs folder
-        id: changed-files-specific
+        id: changed-files
         uses: tj-actions/changed-files@v34
         with:
           files: subgraphs/products/schema.graphql
 
       - id: check_schema
         name: Run step if any file(s) in the docs folder change
-        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        if: contains(steps.changed-files.outputs.modified_files, 'subgraphs/products/schema.graphql')
         run: echo "schema_changed=true" >> $GITHUB_OUTPUT
