@@ -22,9 +22,10 @@ jobs:
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
       - id: publish_readme 
         run: |
-          rover readme publish hack-the-e-commerce@main --file ./README.md
+          rover readme publish ${{ secrets.APOLLO_GRAPH_REF }} --file ./README.md
         env:
           APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+          APOLLO_GRAPH_REF: ${{ secrets.APOLLO_GRAPH_REF }}
     
   check_readme_changed:
     name: Check if README changed
