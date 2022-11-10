@@ -1,0 +1,47 @@
+name: GraphOS README
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  publish_readme:
+    needs: check_readme_changed
+    if: needs.check_readme_changed.outputs.readme_changed == 'true'
+    name: Publish repository README to GraphOS
+    runs-on: ubuntu-latest
+    outputs:
+      success: ${{ steps.publish_readme.outputs.firstword }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Rover
+        run: |
+          curl -sSL https://rover.apollo.dev/nix/latest | sh
+          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - id: publish_readme 
+        run: |
+          rover readme publish hack-the-e-commerce@main --file ./README.md
+        env:
+          APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+    
+  check_readme_changed:
+    name: Check if README changed
+    runs-on: ubuntu-latest
+    outputs:
+      readme_changed: ${{ steps.check_readme.outputs.readme_changed }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get changed files in the docs folder
+        id: changed-files-specific
+        uses: tj-actions/changed-files@v34
+        with:
+          files: |
+            README.md
+
+      - id: check_readme
+        name: Run step if any file(s) in the docs folder change
+        if: steps.changed-files-specific.outputs.any_changed == 'true'
+        run: echo "readme_changed=true" >> $GITHUB_OUTPUT
+    

@@ -1,6 +1,8 @@
 name: Deploy
 on:
   push:
+    paths:
+      - 'subgraphs/products/**'
     branches:
       - main
   # Allows you to run this workflow manually from the Actions tab

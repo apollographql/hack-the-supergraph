@@ -1,5 +1,9 @@
 name: Tests and Checks
-on: push
+
+on: 
+  push:
+    paths:
+      - 'subgraphs/products/**'
 
 jobs:
   get_subgraph_name:
