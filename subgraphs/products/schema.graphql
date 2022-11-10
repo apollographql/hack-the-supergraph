@@ -14,7 +14,7 @@ type Query {
   """
   product(id: ID!): Product
   """
-  Top products for home display 
+  Top products for home display  
   """
   products: [Product]
 }

@@ -13,6 +13,7 @@ on:
 jobs:
   publish_schema:
     name: Publish new schema to GraphOS
+    needs: check_schema_changed
     if: needs.check_schema_changed.outputs.schema_changed == 'true'
     runs-on: ubuntu-latest
     steps:
