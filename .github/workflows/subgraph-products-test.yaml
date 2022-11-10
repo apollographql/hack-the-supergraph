@@ -36,4 +36,4 @@ jobs:
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
       - name: Schema Validation
         working-directory: "./subgraphs/products"
-        run: rover subgraph check ${{ secrets.APOLLO_GRAPH_REF }} --schema ./subgraphs/$SUBGRAPH_NAME/schema.graphql --name $SUBGRAPH_NAME
+        run: rover subgraph check ${{ secrets.APOLLO_GRAPH_REF }} --schema schema.graphql --name products
