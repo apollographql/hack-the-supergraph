@@ -23,6 +23,7 @@ jobs:
           curl -sSL https://rover.apollo.dev/nix/latest | sh
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
       - name: Publish Schema
+        working-directory: "./subgraphs/products"
         run: rover subgraph publish ${{ secrets.APOLLO_GRAPH_REF }} --schema schema.graphql --name products --routing-url ${{ secrets.PRODUCTS_PRODUCTION_URL }}
         env:
           APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
