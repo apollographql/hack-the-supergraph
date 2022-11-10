@@ -7,21 +7,6 @@ on:
   workflow_dispatch:
 
 jobs:
-  schema_validation:
-    name: Check Schema with Apollo Studio
-    if: false
-    runs-on: ubuntu-latest
-    env:
-      APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
-      APOLLO_GRAPH_REF: ${{ secrets.APOLLO_GRAPH_REF }}
-    steps:
-      - uses: actions/checkout@v3
-      - name: Install Rover
-        run: |
-          curl -sSL https://rover.apollo.dev/nix/latest | sh
-          echo "$HOME/.rover/bin" >> $GITHUB_PATH
-      - run: rover subgraph check ${{ secrets.APOLLO_GRAPH_REF }} --schema ./subgraphs/$SUBGRAPH_NAME/schema.graphql --name $SUBGRAPH_NAME
-  
   publish_readme:
     needs: check_readme_changed
     if: needs.check_readme_changed.outputs.readme_changed == 'true'
