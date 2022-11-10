@@ -19,13 +19,14 @@ describe("Repository Template Functionality", () => {
   it("Execute root query", async () => {
     //Arrange
     const query =
-      'query { _entities(representations:[{__typename:"Thing",id:"1"}]) { ...on Thing { name } } }';
-    const expected = { _entities: [{ name: "Name" }] };
+      'query { _entities(representations:[{__typename:"Product",id:"product:1"}]) { ...on Product { title } } }';
+
+    const expected = { _entities: [{ title: "The Apollo T-Shirt" }] };
  
     //Act
     const response = await server.executeOperation({ query });
 
     //Assert
-    expect(response.result.data).toEqual(expected);
+    expect(response.body.singleResult.data).toEqual(expected);
   });
 });
