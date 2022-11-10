@@ -19,7 +19,9 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm run test
-        
+
   test_changed_subgraph_schemas: 
     needs: schema_validation
     runs-on: ubuntu-latest
+    steps: 
+      - run: 'echo "success"'
