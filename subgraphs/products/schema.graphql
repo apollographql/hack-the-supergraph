@@ -3,7 +3,7 @@ extend schema
     url: "https://specs.apollo.dev/federation/v2.0"
     import: ["@key", "@shareable"]
   )
-
+ 
 type Query {
   """
   Get all available products to shop for. Optionally provide some search filters

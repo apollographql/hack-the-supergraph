@@ -10,8 +10,6 @@ jobs:
   test_changed_subgraph_schemas: 
     needs: schema_validation
     runs-on: ubuntu-latest
-    outputs:
-      subgraph_name: ${{ steps.changed_subgraph_folder.outputs.subgraph_name }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
