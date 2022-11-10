@@ -1,31 +1,24 @@
-# Hack the Supergraph 
+# Hack the Supergraph - Example Fullstack Supergraph
 
-# REVAMP IN PROGRESS, Switch to the [GraphQL Summit 2022 Branch](https://github.com/apollographql/hack-the-supergraph/tree/graphql-summit-2022) 
+This repository contains an example of a Fullstack Supergraph with GraphOS. 
 
-[![Discord](https://img.shields.io/discord/1022972389463687228?label=Discord&logo=discord&logoColor=white&style=for-the-badge&color=blue)](https://discord.gg/d3ct4wZD)
+# Getting started
 
-Welcome to GraphQL Summit '22, the year of the Supergraph.
+There are various ways to try out this example, whether you want to just try things out or run the fullstack app yourself.
 
-As you start your journey exploring, you find a Planisphere that has information of locations all over space. The Planisphere looks old and isn't that fast, but it seems to get the job done. You grab the Planisphere and think of all the galaxies you can discover with it. *You have to put this in your Supergraph so others can access it also, you never know when you meet a space friend.*
+## Trying out the Apollo Hosted Hack the Supergraph Example
 
-You're going to need to grab your tools before starting this journey:
+We have everything in this fulsltack app hosted for you to try everything out. 
 
-- Create your Supergraph account at [studio.apollographql.com](https://studio.apollographql.com/signup)
-  - If you have an Enterprise Apollo account, you'll need to create a personal account for the hackathon.
+### Simple E-Commerce React App with `@defer`
 
-![](images/start-create-apollo-account.png)
+The [`/website/` folder](website/) contains a simple e-commerce website that is built with React and `@apollo/client`. 
 
-  - If you already have an Apollo account, you'll  either have to upgrade your account to the free serverless plan or create a new account for the conference.
+We have [this website hosted on Netlify](https://hack-the-supergraph.netlify.app/) and connected directly to this repo to deploy any changes to the `main` branch. 
 
-![](images/start-upgrade-apollo-account.png)
+### Exploring the Supergraph with Explorer, our GraphQL IDE
 
-- Download [rover] to help develop your Supergraph
-- If you are planning on doing the coding sections, you'll need to ensure you have at least [Node 14 installed].
-- We have a Discord that is being hosted by Apollo Developer Advocates to help answer any questions you might have. Feel free to join the discord and interact with us all during GraphQL Summit 2022.
+GraphOS makes it possible for you to use Explorer for anyone! Check out this [Supergraph's example](https://studio.apollographql.com/public/hack-the-e-commerce/home?variant=main) and try running some queries.
 
-![](images/discord-invite.png)
+There is an operation collection for the Website's grouped queries. 
 
-Once you've done everything above, head to the [`start`](./start/) folder to begin your journey of the cosmic Supergraph! There are three subgraph stations (*cosmic-cove*, *solar-seas* or *space-beach*) you can complete after finishing the [`start`](./start).
-
-[rover]: https://www.apollographql.com/docs/rover/
-[Node 14 installed]: https://nodejs.org/en/download/

@@ -1,0 +1,39 @@
+name: Users Test
+
+on: 
+  pull_request:
+    types: [assigned, opened, synchronize, reopened, review_requested]
+    paths:
+      - 'subgraphs/users/**'
+
+jobs:
+  unit_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+          check-latest: true
+      - name: Setup project
+        working-directory: "./subgraphs/users"
+        run: npm install
+      - name: Run tests
+        working-directory: "./subgraphs/users"
+        run: npm run test
+  schema_validation:
+    name: Check Schema with Apollo Studio
+    needs: unit_tests
+    runs-on: ubuntu-latest
+    env:
+      APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+      APOLLO_GRAPH_REF: ${{ secrets.APOLLO_GRAPH_REF }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Rover
+        run: |
+          curl -sSL https://rover.apollo.dev/nix/latest | sh
+          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - name: Schema Validation
+        working-directory: "./subgraphs/users"
+        run: rover subgraph check ${{ secrets.APOLLO_GRAPH_REF }} --schema schema.graphql --name users

@@ -1,0 +1,43 @@
+name: Deploy Shipping to GraphOS
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'subgraphs/shipping/**'
+      
+jobs:
+  publish_schema:
+    name: Publish new schema to GraphOS
+    needs: check_schema_changed
+    if: needs.check_schema_changed.outputs.schema_changed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Rover
+        run: |
+          curl -sSL https://rover.apollo.dev/nix/latest | sh
+          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - name: Publish Schema
+        working-directory: "./subgraphs/shipping"
+        run: rover subgraph publish ${{ secrets.APOLLO_GRAPH_REF }} --schema schema.graphql --name shipping --routing-url ${{ secrets.SHIPPING_PRODUCTION_URL }}
+        env:
+          APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+          APOLLO_VCS_COMMIT: ${{ github.event.pull_request.head.sha }}
+  check_schema_changed:
+    name: Check if git push has a change to the schema file
+    runs-on: ubuntu-latest
+    outputs:
+      schema_changed: ${{ steps.check_schema.outputs.schema_changed }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get changed files in the docs folder
+        id: changed-files
+        uses: tj-actions/changed-files@v34
+        with:
+          files: subgraphs/shipping/schema.graphql
+
+      - id: check_schema
+        name: Run step if any file(s) in the docs folder change
+        if: contains(steps.changed-files.outputs.modified_files, 'subgraphs/shipping/schema.graphql')
+        run: echo "schema_changed=true" >> $GITHUB_OUTPUT
