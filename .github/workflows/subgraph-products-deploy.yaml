@@ -37,7 +37,7 @@ jobs:
         id: changed-files-specific
         uses: tj-actions/changed-files@v34
         with:
-          files: schema.graphql
+          files: subgraphs/products/schema.graphql
 
       - id: check_schema
         name: Run step if any file(s) in the docs folder change
