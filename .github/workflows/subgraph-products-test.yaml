@@ -1,0 +1,24 @@
+name: Products Test
+
+on: 
+  pull_request:
+    types: [assigned, opened, synchronize, reopened, review_requested]
+    paths:
+      - 'subgraphs/products'
+
+jobs:
+  test_changed_subgraph_schemas: 
+    needs: schema_validation
+    runs-on: ubuntu-latest
+    outputs:
+      subgraph_name: ${{ steps.changed_subgraph_folder.outputs.subgraph_name }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+          check-latest: true
+      - name: Setup project
+        run: npm install
+      - name: Run tests
+        run: npm run test
