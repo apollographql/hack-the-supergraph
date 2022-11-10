@@ -19,9 +19,17 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm run test
-
-  test_changed_subgraph_schemas: 
-    needs: schema_validation
+  schema_validation:
+    name: Check Schema with Apollo Studio
+    needs: unit_tests
     runs-on: ubuntu-latest
-    steps: 
-      - run: 'echo "success"'
+    env:
+      APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+      APOLLO_GRAPH_REF: ${{ secrets.APOLLO_GRAPH_REF }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Rover
+        run: |
+          curl -sSL https://rover.apollo.dev/nix/latest | sh
+          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - run: rover subgraph check ${{ secrets.APOLLO_GRAPH_REF }} --schema ./subgraphs/$SUBGRAPH_NAME/schema.graphql --name $SUBGRAPH_NAME
