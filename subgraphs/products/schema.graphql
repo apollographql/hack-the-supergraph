@@ -3,7 +3,7 @@ extend schema
     url: "https://specs.apollo.dev/federation/v2.0"
     import: ["@key", "@shareable"]
   )
- 
+
 type Query {
   """
   Get all available products to shop for. Optionally provide some search filters
@@ -14,7 +14,7 @@ type Query {
   """
   product(id: ID!): Product
   """
-  Top products for home display 
+  Top products for home display
   """
   products: [Product]
 }
@@ -33,7 +33,6 @@ type Product @key(fields: "id") {
   id: ID!
   title: String
   description: String
-  mediaUrl: String
   weight: Float
   price: Money
 }
