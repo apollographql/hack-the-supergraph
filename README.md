@@ -53,7 +53,7 @@ All of the subgraph projects are located in the `subgraphs` folder. There are cu
 
 ### GitHub Actions
 
-All of the subgraphs in this example have GitHub Action workflows to interact with GraphOS. We created separate workflows to isolate each subgraphs tests and deploys. It was easy enough to do this using [paths](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-including-paths) for each subgrpah folder.
+All of the subgraphs in this example have GitHub Action workflows to interact with GraphOS. We created separate workflows to isolate each subgraphs tests and deploys. It was easy enough to do this using [paths](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-including-paths) for each subgraph folder.
 
 **This README**
 
