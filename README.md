@@ -12,10 +12,10 @@ Certain changes to your graph's schema (such as removing a field or type) might 
 
 To try out schema checks on this repository:
 
-1. [Navigate to the products subgraph](subgraphs/products/schema.graphql)
-2. Edit the file and remove the `mediaUrl` filed from the `Product` type
-3. Create a new PR and commit
-4. GitHub Actions will trigger in PR and fail due to schema checks
+1. Create a new branch for your changes.
+2. [Navigate to the products subgraph](subgraphs/products/schema.graphql)
+3. Edit the file and remove the `mediaUrl` filed from the `Product` type
+4. Commit the changes and submit a PR.
 
 ## Deploying Subgraph changes with Launches
 
@@ -31,7 +31,7 @@ Run this command and follow the steps there.
 ### Running checks manually
 
 **Format**
-`rover subgraph check super-graphics-sn2w57@main --name <subgraphName> --schema schema.graphql`
+`rover subgraph check <graphID@variant> --name <subgraphName> --schema schema.graphql`
 
 **Example**
 `rover subgraph check super-graphics-sn2w57@main --name products --schema schema.graphql`
@@ -40,7 +40,7 @@ Run this command and follow the steps there.
 ### Running a publish manually
 
 **Format**
-`rover subgraph publish super-graphics-sn2w57@main --schema schema.graphql --name <subgraphName> --routing-url https://main--hack-the-e-commerce.apollographos.net/graphql`
+`rover subgraph publish <graphID@variant> --schema schema.graphql --name <subgraphName> --routing-url https://main--hack-the-e-commerce.apollographos.net/graphql`
 
 **Example**
 `rover subgraph publish super-graphics-sn2w57@main --schema schema.graphql --name shipping --routing-url https://main--hack-the-e-commerce.apollographos.net/graphql`
