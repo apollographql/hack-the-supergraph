@@ -1,51 +1,6 @@
 # Hack the Supergraph - Example Fullstack Supergraph
 
-This repository contains an example of a Fullstack Supergraph with GraphOS. 
-
-## 📖 Prerequisites
-
-In order to run the project locally, you'll need `node>=14` installed on your development machines.
-
-## 🏃‍♂️🕐 Powered by [GraphOS](https://www.apollographql.com/docs/graphos/) 
-
-GraphOS automatically provisions and hosts a serverless cloud router for this example. Clients query the router instead of individual subgraphs, which enables the router to automatically collect operation metrics and usage data that you can then visualize in Apollo Studio.
-
-Create your free serverless cloud router with GraphOS by signing up for free [here](https://studio.apollographql.com/signup?from=%2F).
-
-## 👩‍🚀🚀✨ Exploring the Supergraph with Explorer, our GraphQL IDE  
-
-GraphOS makes it possible to expose a public set of docs for your supergraph that anyone can use! Check out this [supergraph's example](https://studio.apollographql.com/public/hack-the-e-commerce/home?variant=main) and try running some queries.
-
-You can create operation collections in the Apollo Studio Explorer, enabling you to save, organize, and share your frequently used GraphQL operations. There is an operation collection for the Website's grouped queries. 
-
-## 🌐 Using @defer in a React App hosted on Netlify
-
-[Deployed on Netlify, try `@defer`](https://hack-the-supergraph.netlify.app/product/product:1)
-
-This fullstack application contains a simple React app that utilizes [`@apollo/client`](https://github.com/apollographql/apollo-client) to query GraphOS.
-
-## 🖥️ Local development
-
-If you would like to run the website locally, setup the website:
-
-```sh
-cd website
-npm install
-```
-
-To start a local copy of the app on port 3000:
-
-```sh
-npm start
-```
-
-To debuge the instance, open VS Code and use the launch configuration available in the [Debug panel](https://code.visualstudio.com/docs/editor/debugging):
-
-```sh
-code .
-```
-
-![VS Code Debugger](https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png)
+This repository contains an example of a fullstack supergraph with GraphOS. 
 
 ## Subgraphs
 
@@ -75,3 +30,25 @@ To try out schema checks on this repository:
 In GraphOS, a launch represents the complete process of making a set of updates to a supergraph, usually initiated by changes to one of its subgraphs. 
 
 For this example we've kept it simple and have the minimum of what you want, keeping the `main` branch of this repository in sync with the `main` variant in GraphOS. Each variant of a supergraph has its own subgraph schemas, supergraph schema, change history, and metrics. You might have a staging or pre-production environment and that's exactly what variants are for!
+
+**Set up Rover authentication
+
+Run this command and follow the steps there.
+`rover config auth`
+
+**Running checks manually
+
+**Format**
+`rover subgraph check super-graphics-sn2w57@main --name <subgraphName> --schema schema.graphql`
+
+**Example**
+`rover subgraph check super-graphics-sn2w57@main --name products --schema schema.graphql`
+
+
+**Running a publish manually
+
+**Format**
+`rover subgraph publish super-graphics-sn2w57@main --schema schema.graphql --name <subgraphName> --routing-url https://main--hack-the-e-commerce.apollographos.net/graphql`
+
+**Example**
+`rover subgraph publish super-graphics-sn2w57@main --schema schema.graphql --name shipping --routing-url https://main--hack-the-e-commerce.apollographos.net/graphql`
