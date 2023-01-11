@@ -17,6 +17,24 @@ const reviews = [
     rating: 3.0,
     content: "It's just a shirt 🤷‍♂️",
   },
+  {
+    id: "review:4",
+    productId: "product:5",
+    rating: 5,
+    content: "My kids just are really big into beanies and they wear these all the time!",
+  },
+  {
+    id: "review:5",
+    productId: "product:5",
+    rating: 3,
+    content: "It's a beanie 🤷",
+  },
+  {
+    id: "review:6",
+    productId: "product:2",
+    rating: 5,
+    content: "Keeps my coffee hot all day long so I never have to microwave it",
+  },
 ];
 
 // const averages = [{ productId: "product:1", average: 4.9 }];
