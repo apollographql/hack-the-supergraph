@@ -87,4 +87,24 @@ You can easily deploy all of the subgraphs to Railway by clicking the button abo
 3. `orders`
 4. `shipping`
 
-Once your last deploy finishes in Studio, you can test it out by running [the query from the UI](https://github.com/apollographql/hack-the-supergraph/blob/207ebcc0fed13084b1702394f2764ffa3ebf1aa1/website/src/pages/Product.js#L19).
+Once your last deploy finishes in Studio, you can test it out by running a query like this:
+
+```graphql
+
+  fragment ProductFragment on Product {
+    averageRating
+    reviews {
+      content
+      rating
+    }
+  }
+  query GetProductDetails {
+    products {
+      id
+      title
+      description
+      mediaUrl
+      ...ProductFragment @defer
+    }
+  }
+```
