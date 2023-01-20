@@ -75,3 +75,16 @@ To try out schema checks on this repository:
 In GraphOS, a launch represents the complete process of making a set of updates to a supergraph, usually initiated by changes to one of its subgraphs. 
 
 For this example we've kept it simple and have the minimum of what you want, keeping the `main` branch of this repository in sync with the `main` variant in GraphOS. Each variant of a supergraph has its own subgraph schemas, supergraph schema, change history, and metrics. You might have a staging or pre-production environment and that's exactly what variants are for!
+
+### Deploy to Railway and GraphOS
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/fyuqlV?referralCode=xsbY2R)
+
+You can easily deploy all of the subgraphs to Railway by clicking the button above—just configure your first subgraph with the repo you want to clone this to, and click into the rest to accept the defaults. Once all of the subgraphs are deployed, create a new supergraph in GraphOS pointing to the `users` subgraph, then add new subgraphs in this order:
+
+1. `reviews`
+2. `products`
+3. `orders`
+4. `shipping`
+
+Once your last deploy finishes in Studio, you can test it out by running [the query from the UI](https://github.com/apollographql/hack-the-supergraph/blob/207ebcc0fed13084b1702394f2764ffa3ebf1aa1/website/src/pages/Product.js#L19).
