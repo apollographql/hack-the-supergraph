@@ -23,7 +23,6 @@ jobs:
         run: npm run test
   schema_validation:
     name: Check Schema with Apollo Studio
-    needs: unit_tests
     runs-on: ubuntu-latest
     env:
       APOLLO_KEY: ${{ secrets.APOLLO_KEY }}

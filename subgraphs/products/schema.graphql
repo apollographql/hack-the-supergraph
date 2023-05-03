@@ -31,7 +31,6 @@ A specific product sold by our store. This contains all the high level details b
 """
 type Product @key(fields: "id") {
   id: ID!
-  title: String
   description: String
   mediaUrl: String
   weight: Float
